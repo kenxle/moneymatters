@@ -7,7 +7,26 @@
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
+# server "23.239.8.185", user: "kenstclair", roles: %w{web app}
 
+# ==================
+# Supports bulk-adding hosts to roles, the primary
+# server in each group is considered to be the first
+# unless any hosts have the primary property set.
+# Don't declare `role :all`, it's a meta role
+role :app, %w{kenstclair@23.239.8.185}
+role :web, %w{kenstclair@23.239.8.185}
+role :db,  %w{kenstclair@23.239.8.185}
+
+# Extended Server Syntax
+# ======================
+# This can be used to drop a more detailed server
+# definition into the server list. The second argument
+# something that quacks like a hash can be used to set
+# extended properties on the server.
+server '23.239.8.185', user: 'kenstclair', roles: %w{web app}
+
+set :branch, "master"
 
 # role-based syntax
 # ==================
@@ -49,16 +68,16 @@
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
- server "23.239.8.185",
-   user: "kenstclair",
-   roles: %w{web app},
-   ssh_options: {
-     user: "git", # overrides user setting above
-     keys: %w(/Users/kennethrstclairiii/.ssh/id_rsa),
-#     forward_agent: false,
-#     auth_methods: %w(publickey password)
-#     # password: "please use keys"
-   }
+#  server "23.239.8.185",
+#    user: "kenstclair",
+#    roles: %w{web app},
+#    ssh_options: {
+#      user: "git", # overrides user setting above
+#      keys: %w(/Users/kennethrstclairiii/.ssh/id_rsa),
+#      # forward_agent: true,
+#      auth_methods: %w(publickey),
+#      # verbose: :debug
+# #     # password: "please use keys"
+#    }
 
-set :branch, "master"
 
