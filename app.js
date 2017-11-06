@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
+
 app.use(express.static(__dirname +'/www'));
 app.use(errorHandler({
   dumpExceptions: true,
