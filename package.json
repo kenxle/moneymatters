@@ -1,17 +1,17 @@
 {
-  "name": "simple-express-static-server",
-  "version": "0.0.1",
-  "description": "A very simple static file server.",
-  "main": "app.js",
+  "name": "moneymatters.graphics",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node ./bin/www"
   },
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "errorhandler": "^1.5.0",
-    "express": "^4.16.2",
-    "fs": "0.0.1-security",
-    "method-override": "^1.0.2",
-    "morgan": "^1.9.0"
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.15.5",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.0",
+    "serve-favicon": "~2.4.5"
   }
 }
