@@ -36,7 +36,7 @@ namespace :deploy do
   desc "cause Passenger to initiate a restart" 
   task :restart do
     on roles :all do
-      execute "touch #{deploy_to}/tmp/restart.txt"
+      execute "touch #{current_path}/tmp/restart.txt"
     end
   end
 
