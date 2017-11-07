@@ -41,11 +41,11 @@ namespace :deploy do
  
 
   task :npm_install do
-    run "cd #{current_path}/current/ && npm install"
+    run "cd #{current_path} && npm install"
   end
 
   task :npm_update do
-    run "cd #{current_path}/current/ && npm update"
+    run "cd #{current_path} && npm update"
   end
 
 
