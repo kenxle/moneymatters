@@ -6,19 +6,60 @@ set :application, "moneymatters.graphics"
 # set :repository, "kenstclair@23.239.8.185:/home/git/moneymatters.graphics.git"  #/home/git/moneymatters.graphics.git #ssh://git@23.239.8.185/~/moneymatters.graphics.git
 set :repo_url, "kenstclair@23.239.8.185:/home/git/moneymatters.graphics.git"
 set :ssh_options, { :forward_agent => true }
-# Default branch is :master
-# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/home/kenstclair/public/moneymatters.graphics"
 
+set :keep_releases, 7
+set :deploy_via, :remote_cache
+set :main_js, "MAIN_APP.js"
+
 namespace :deploy do
+
+  # before 'deploy:start', 'deploy:npm_install'
+  before 'deploy:restart', 'deploy:npm_install'
+  # before 'deploy:default', 'deploy:setup'
+
+  after 'deploy:create_symlink', 'deploy:symlink_node_folders'
+  after 'deploy:setup', 'deploy:node_additional_setup'
+
+  # desc "START the servers"
+  #   task :start, :roles => :app, :except => { :no_release => true } do
+  #   run "cd #{applicationdir}/current/ && node_modules/.bin/forever start #{main_js}"
+  # end
+
+  # desc "STOP the servers"
+  #   task :stop, :roles => :app, :except => { :no_release => true } do
+  #   run "cd #{applicationdir}/current/ && node_modules/.bin/forever stop #{main_js}"
+  # end
+
   desc "cause Passenger to initiate a restart" 
-  task :restart do
+  task :restart, :roles => :app, :except => { :no_release => true }  do
     run "touch #{current_path}/tmp/restart.txt" 
   end
+
+  task :symlink_node_folders, :roles => :app, :except => { :no_release => true } do
+    run "ln -s #{applicationdir}/shared/node_modules #{applicationdir}/current/node_modules"
+  end
+
+  task :node_additional_setup, :roles => :app, :except => { :no_release => true } do
+    run "mkdir -p #{applicationdir}/shared/node_modules"
+  end
+
+  task :npm_install, :roles => :app, :except => { :no_release => true } do
+    run "cd #{applicationdir}/current/ && npm install"
+  end
+
+  task :npm_update, :roles => :app, :except => { :no_release => true } do
+    run "cd #{applicationdir}/current/ && npm update"
+  end
+
+
 end
 
+
+# Default branch is :master
+# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 # after :publishing, :restart
 
 #####################
