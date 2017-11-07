@@ -10,15 +10,15 @@ set :ssh_options, { :forward_agent => true }
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/home/kenstclair/public/moneymatters.graphics"
 
-# set :keep_releases, 7
-# set :deploy_via, :remote_cache
-# set :main_js, "app.js"
+set :keep_releases, 7
+set :deploy_via, :remote_cache
+set :main_js, "app.js"
 
 namespace :deploy do
 
   # before 'deploy:start', 'deploy:npm_install'
   before 'deploy:restart', 'deploy:npm_install'
-  # before 'deploy:default', 'deploy:setup'
+  # before 'deploy:default', 'deploy:restart'
 
   # after 'deploy:create_symlink', 'deploy:symlink_node_folders'
   # after 'deploy:setup', 'deploy:node_additional_setup'
@@ -35,7 +35,7 @@ namespace :deploy do
 
   desc "cause Passenger to initiate a restart" 
   task :restart do
-  	run "cd #{current_path}/current/ && npm install"
+    run "touch #{current_path}/../tmp/restart.txt"
   end
 
  
