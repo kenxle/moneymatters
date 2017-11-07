@@ -18,9 +18,9 @@ namespace :deploy do
 
   # before 'deploy:start', 'deploy:npm_install'
   before 'deploy:restart', 'deploy:npm_install'
+  after 'deploy:publishing', 'deploy:restart'
   # before 'deploy:default', 'deploy:restart'
 
-  # after 'deploy:create_symlink', 'deploy:symlink_node_folders'
   # after 'deploy:setup', 'deploy:node_additional_setup'
 
   # desc "START the servers"
@@ -35,17 +35,23 @@ namespace :deploy do
 
   desc "cause Passenger to initiate a restart" 
   task :restart do
-    run "touch #{current_path}/../tmp/restart.txt"
+    on roles :all do
+      execute "touch #{deploy_to}/tmp/restart.txt"
+    end
   end
 
  
 
   task :npm_install do
-    run "cd #{current_path} && npm install"
+    on roles :all do
+      execute "cd #{current_path} && npm install"
+    end
   end
 
   task :npm_update do
-    run "cd #{current_path} && npm update"
+    on roles :all do
+      execute "cd #{current_path} && npm update"
+    end
   end
 
 
