@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+//SET DEBUG=moneymatters:* & npm run devstart // run this way to restart the server with every file edit
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
