@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { RepresentativeComponent } from './representative/representative.component'
 
 @Component({
   selector: 'app-root',
