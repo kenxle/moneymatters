@@ -36,8 +36,8 @@ namespace :deploy do
   desc "cause Passenger to initiate a restart" 
   task :restart do
     on roles :all do
-      execute "mkdir -p #{current_path}/tmp"
-      execute "touch #{current_path}/tmp/restart.txt"
+      execute "mkdir -p #{current_path}/moneymatters/tmp"
+      execute "touch #{current_path}/moneymatters/tmp/restart.txt"
     end
   end
 
@@ -45,13 +45,13 @@ namespace :deploy do
 
   task :npm_install do
     on roles :all do
-      execute "cd #{current_path} && npm install"
+      execute "cd #{current_path}/moneymatters && npm install"
     end
   end
 
   task :npm_update do
     on roles :all do
-      execute "cd #{current_path} && npm update"
+      execute "cd #{current_path}/moneymatters && npm update"
     end
   end
 
