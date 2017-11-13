@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { RepService } from '../rep/rep.service'
 import { Rep } from '../rep/rep';
-
+import { REPS } from '../rep/mock-reps';
+import { RepService } from '../rep/rep.service';
 
 
 @Component({
@@ -12,9 +12,10 @@ import { Rep } from '../rep/rep';
 })
 
 export class RepListComponent {
+  reps = REPS;
   constructor(private RepService: RepService) { }
   ngOnInit() {
-    this.RepService.getReps()
+
   }
 
 }

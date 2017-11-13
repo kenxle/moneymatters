@@ -1,3 +1,4 @@
 <article class="rep-list">
-  <app-rep-card *ngFor="let rep of reps"></app-rep-card> 
+  <h3>List of Reps</h3>
+  <app-rep-card *ngFor="let rep of reps" [rep]="rep"></app-rep-card>
 </article>

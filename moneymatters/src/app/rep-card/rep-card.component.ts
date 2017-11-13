@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { RepService } from '../rep/rep.service'
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { RepService } from '../rep/rep.service';
+import { Rep } from '../rep/rep';
 
 @Component({
   selector: 'app-rep-card',
@@ -9,7 +10,7 @@ import { RepService } from '../rep/rep.service'
 })
 
 export class RepCardComponent implements OnInit {
-
+  @Input() rep: Rep;
   constructor() { }
 
   ngOnInit() {
