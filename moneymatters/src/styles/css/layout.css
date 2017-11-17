@@ -53,9 +53,10 @@ table {
   font-size: 1rem;
   background-color: #fff;
   color: #979797;
-  border: 1px solid #979797; }
+  border: 1px solid #979797;
+  border-radius: 3px; }
   .rep-button:hover {
-    background-color: #333;
+    background-color: #666;
     color: #fff; }
   .rep-button.active {
     color: #fff;

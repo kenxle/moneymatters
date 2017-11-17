@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { RepService } from '../rep/rep.service';
 
 @Component({
   selector: 'app-rep-filter',
@@ -12,7 +13,7 @@ export class RepFilterComponent implements OnInit {
 
   }
 
-  setActive($event) {
+  setActive($event, filter) {
     let classList: string[] = $event.target.className.split(/\s+/);
     if(classList.indexOf("active") === -1) {
       $event.target.classList.add("active");
@@ -20,6 +21,8 @@ export class RepFilterComponent implements OnInit {
     else {
       $event.target.classList.remove("active");
     }
+
+    console.log(RepService);
   }
 
   ngOnInit() {
