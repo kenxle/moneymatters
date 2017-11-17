@@ -14,8 +14,24 @@ export class RepChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-      let svg = d3.select('svg');
-      console.log('svg');
-  }
+      let createNodes = function(numNodes, radius) {
 
+      }
+      let svg = d3.select('svg');
+      var circles = function() {
+        for (let i = 0; i < REPS.length; i++) {
+          svg.append("circle").attr("cx", i + 1 * 30).attr("cy", 100);
+        }
+      }
+      var arc = d3.arc()
+      .innerRadius(50)
+      .outerRadius(150)
+      .startAngle(0)
+      .endAngle(Math.PI);
+
+
+      circles();
+      svg.append("path").attr("d", arc).attr("transform", "translate(200, 200)")
+      // .attr("transform", "rotate(-90)")
+  }
 }

@@ -2,6 +2,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
@@ -11,6 +12,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   vertical-align: baseline; }
 
 /* HTML5 display-role reset for older browsers */
+
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
   display: block; }
 
@@ -23,42 +25,16 @@ ol, ul {
 blockquote, q {
   quotes: none; }
 
-blockquote:before, blockquote:after {
-  content: '';
-  content: none; }
+blockquote {
+  &:before, &:after {
+    content: '';
+    content: none; } }
 
-q:before, q:after {
-  content: '';
-  content: none; }
+q {
+  &:before, &:after {
+    content: '';
+    content: none; } }
 
 table {
   border-collapse: collapse;
   border-spacing: 0; }
-
-.app-container {
-  display: flex;
-  flex-flow: row wrap; }
-
-.rep-card {
-  padding: 1rem;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); }
-
-.rep-filters {
-  display: flex;
-  flex-flow: row wrap;
-  list-style-type: none; }
-
-.rep-button {
-  padding: 0.5rem 2rem;
-  font-size: 1rem;
-  background-color: #fff;
-  color: #979797;
-  border: 1px solid #979797; }
-  .rep-button:hover {
-    background-color: #333;
-    color: #fff; }
-  .rep-button.active {
-    color: #fff;
-    background-color: #333; }
-
-/*# sourceMappingURL=layout.css.map */
