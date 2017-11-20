@@ -17,18 +17,8 @@ export class RepChartComponent implements OnInit {
   ngOnInit() {
 
       let svg;
-      let houseRows = [
-        28,
-        30,
-        33,
-        37,
-        41,
-        45,
-        49,
-        53,
-        58,
-        60
-      ];
+      let houseRows = [33, 30, 28];
+      // 33, 37, 41, 45, 49, 53, 58, 60
       let createNodes = function(nodeBase, radius) {
         var nodes = [],
              angle,
@@ -40,14 +30,16 @@ export class RepChartComponent implements OnInit {
              width,
              height;
          for(let j = 0; j < nodeBase.length; j++) {
-           radius = radius - j*20;
-           width = (radius * 2) + 50;
-           height = (radius * 2) + 50;
+           let localradius = (radius)/(j+1);
+           console.log(localradius);
+           width = (localradius) + (50 + (20 * (j+1)));
+           height = (localradius) + (50 + (20 * (j+1)));
+           console.log(width);
            for (i=0; i<nodeBase[j]; i++) {
             angle = (i / nodeBase[j]) * Math.PI; // Calculate the angle at which the element will be placed.
                                              // For a semicircle, we would use (i / numNodes) * Math.PI.
-            x = (radius * Math.cos(angle)) + (width/2); // Calculate the x position of the element.
-            y = (radius * Math.sin(angle)) + (width/2); // Calculate the y position of the element.
+            x = -1 * (localradius * Math.cos(angle)) + (width/(j+1)); // Calculate the x position of the element.
+            y = -1 * (localradius * Math.sin(angle)) + (height/(j+1)); // Calculate the y position of the element.
             party = (i % 2 === 0) ? "Dem" : "Rep";
             nodes.push({'id': i, 'x': x, 'y': y, 'party': party });
            }
@@ -57,8 +49,8 @@ export class RepChartComponent implements OnInit {
       var createSvg = function (radius, callback) {
         d3.selectAll('svg').remove();
          svg = d3.select('#canvas').append('svg:svg')
-                    .attr('width', (radius * 2) + 50)
-                    .attr('height', (radius * 2) + 50);
+                    .attr('width', 500)
+                    .attr('height', 500);
          callback(svg);
        }
        var colorParties = function(svg, nodes) {
@@ -69,7 +61,6 @@ export class RepChartComponent implements OnInit {
        }
 
        var createElements = function (svg, nodes, elementRadius) {
-          console.log(`creating ${nodes} elements`);
           let element = svg.selectAll('circle')
                          .data(nodes)
                          .enter().append('svg:circle')
