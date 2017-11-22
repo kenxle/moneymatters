@@ -1,3 +1,6 @@
 /node_modules
 package-lock.json
 log
+/mean
+/moneymatters/node_modules
+.DS_Store
