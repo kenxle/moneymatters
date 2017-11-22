@@ -17,6 +17,8 @@ set :main_js, "app.js"
 namespace :deploy do
 
   # before 'deploy:start', 'deploy:npm_install'
+
+  before 'deploy:npm_install', 'deploy:ng_compile'
   before 'deploy:restart', 'deploy:npm_install'
   after 'deploy:publishing', 'deploy:restart'
   # before 'deploy:default', 'deploy:restart'
@@ -46,6 +48,12 @@ namespace :deploy do
   task :npm_install do
     on roles :all do
       execute "cd #{current_path}/moneymatters && npm install"
+    end
+  end
+
+  task :ng_compile do
+    on roles :all do
+      execute "cd #{current_path}/moneymatters && ng build --prod --base-href='dist'"
     end
   end
 
