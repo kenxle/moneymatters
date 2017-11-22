@@ -10,17 +10,17 @@ set :ssh_options, { :forward_agent => true }
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/home/kenstclair/public/moneymatters.graphics"
 
-# set :keep_releases, 7
-# set :deploy_via, :remote_cache
-# set :main_js, "app.js"
+set :keep_releases, 7
+set :deploy_via, :remote_cache
+set :main_js, "app.js"
 
 namespace :deploy do
 
   # before 'deploy:start', 'deploy:npm_install'
   before 'deploy:restart', 'deploy:npm_install'
-  # before 'deploy:default', 'deploy:setup'
+  after 'deploy:publishing', 'deploy:restart'
+  # before 'deploy:default', 'deploy:restart'
 
-  # after 'deploy:create_symlink', 'deploy:symlink_node_folders'
   # after 'deploy:setup', 'deploy:node_additional_setup'
 
   # desc "START the servers"
@@ -35,17 +35,24 @@ namespace :deploy do
 
   desc "cause Passenger to initiate a restart" 
   task :restart do
-  	run "cd #{current_path}/current/ && npm install"
+    on roles :all do
+      execute "mkdir -p #{current_path}/moneymatters/tmp"
+      execute "touch #{current_path}/moneymatters/tmp/restart.txt"
+    end
   end
 
  
 
   task :npm_install do
-    run "cd #{current_path}/current/ && npm install"
+    on roles :all do
+      execute "cd #{current_path}/moneymatters && npm install"
+    end
   end
 
   task :npm_update do
-    run "cd #{current_path}/current/ && npm update"
+    on roles :all do
+      execute "cd #{current_path}/moneymatters && npm update"
+    end
   end
 
 

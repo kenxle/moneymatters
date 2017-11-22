@@ -1,0 +1,31 @@
+@import "reset";
+
+.app-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+.rep-card {
+  padding: 1rem;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+}
+
+.rep-filters {
+  display: flex;
+  flex-flow: row wrap;
+  list-style-type: none;
+}
+.rep-button {
+  padding: 0.5rem 2rem;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #979797;
+  border: 1px solid #979797;
+  &:hover {
+    background-color: #333;
+    color: #fff;
+  }
+  &.active {
+    color: #fff;
+    background-color: #333;
+  }
+}
