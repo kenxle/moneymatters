@@ -11,7 +11,8 @@ import { Rep } from '../rep/rep';
 
 export class RepCardComponent implements OnInit {
   @Input() rep: Rep;
-  constructor() { }
+  constructor() {
+   }
 
   ngOnInit() {
   }
