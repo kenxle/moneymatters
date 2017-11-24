@@ -35,7 +35,7 @@ export class RepChartComponent implements OnInit {
       for (let j = 0; j < nodeBase.length; j++) {
         let localradius = (radius) - 15 * (j + 1);
         console.log(localradius);
-        width = (localradius) + 100;
+        width = (localradius) + 50;
         height = radius + 50;
         for (i = 0; i < nodeBase[j]; i++) {
           angle = (i / nodeBase[j]) * Math.PI; // Calculate the angle at which the element will be placed.
@@ -51,7 +51,7 @@ export class RepChartComponent implements OnInit {
     var createSvg = function(radius, callback) {
       d3.selectAll('svg').remove();
       svg = d3.select('#canvas').append('svg:svg')
-        .attr('width', 800)
+        .attr('width', 650)
         .attr('height', 500);
       callback(svg);
     }

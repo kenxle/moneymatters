@@ -3,6 +3,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { Http, Response } from '@angular/http';
 import { NgModule } from '@angular/core';
 import * as d3 from 'd3';
+import {NgxPaginationModule} from 'ngx-pagination';
 import { RepService } from './rep/rep.service';
 import { AppComponent } from './app.component';
 import { RepListComponent } from './rep-list/rep-list.component';
@@ -30,7 +31,8 @@ import { BillComponent } from './bill/bill.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   bootstrap: [AppComponent],
   providers: [RepService]

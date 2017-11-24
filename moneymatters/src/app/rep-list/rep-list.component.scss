@@ -1,4 +1,6 @@
 
 .rep-list {
   max-width: 600px;
+  display: flex;
+  flex-flow: row wrap;
 }
