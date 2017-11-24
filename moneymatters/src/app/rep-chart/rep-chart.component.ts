@@ -10,7 +10,7 @@ import * as $ from 'jquery';
 @Component({
   selector: 'app-rep-chart',
   templateUrl: './rep-chart.component.html',
-  styleUrls: ['./rep-chart.component.css'],
+  styleUrls: ['./rep-chart.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class RepChartComponent implements OnInit {
