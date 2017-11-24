@@ -4,7 +4,7 @@ import { RepService } from '../rep/rep.service';
 @Component({
   selector: 'app-rep-filter',
   templateUrl: './rep-filter.component.html',
-  styleUrls: ['./rep-filter.component.css'],
+  styleUrls: ['./rep-filter.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class RepFilterComponent implements OnInit {

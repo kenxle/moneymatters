@@ -10,7 +10,7 @@ import { RepCardComponent } from './rep-card/rep-card.component';
 import { RepChartComponent } from './rep-chart/rep-chart.component';
 
 import { BillListComponent } from './bill-list/bill-list.component'
-import { BillListService } from './bill-list/bill-list.service'
+import { DataService } from './services/data.service'
 
 import { RepFilterComponent } from './rep-filter/rep-filter.component';
 import { FirstLetter } from './pipes/firstletter.pipe';

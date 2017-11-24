@@ -16,7 +16,7 @@ export class BillListComponent implements OnInit {
     
   ngOnInit() {
    this._billListService.getBillList().subscribe(data => {
-   	this.bills = data.bills
+   	this.bills = data['bills']
    	console.log(this.bills)
    	// console.log(data)
    });

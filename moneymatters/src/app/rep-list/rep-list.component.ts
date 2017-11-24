@@ -7,7 +7,7 @@ import { DataService } from '../services/data.service';
 @Component({
   selector: 'app-rep-list',
   templateUrl: './rep-list.component.html',
-  styleUrls: ['./rep-list.component.css'],
+  styleUrls: ['./rep-list.component.scss'],
   providers: [DataService],
   encapsulation: ViewEncapsulation.None
 })

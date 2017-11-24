@@ -7,7 +7,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of'; //proper way to import the 'of' operator
 import 'rxjs/add/operator/share';
 import 'rxjs/add/operator/map';
-
+//sass src/styles/scss/layout.scss src/styles/css/layout.css && 
 
 @Injectable()
 export class DataService {
@@ -16,7 +16,7 @@ export class DataService {
   constructor (
     private http: HttpClient
   ) {}
-
+ 
   getMemberList(chamber) {
     let url = `api/members/${chamber}`
     return this.http.get(url);

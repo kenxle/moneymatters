@@ -22,7 +22,7 @@ export class BillComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  	this.measure =  String(this.measure).replace(/<[^>]+>/gm, '') : '';
+  	this.measure =  String(this.measure).replace(/<[^>]+>/gm, '');
   }
 
 }
