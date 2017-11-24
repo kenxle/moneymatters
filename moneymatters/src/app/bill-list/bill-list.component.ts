@@ -9,15 +9,17 @@ import { BillListService } from './bill-list.service';
   encapsulation: ViewEncapsulation.None
 })
 export class BillListComponent implements OnInit {
-  bills: string[];
+  bills;
 
   constructor(private _billListService: BillListService) { }
 
     
   ngOnInit() {
-   // this.bills = this._billListService.getBills().subscribe(data => {
-   // 	console.log(data);
-   // });
+   this._billListService.getBillList().subscribe(data => {
+   	this.bills = data.bills
+   	console.log(this.bills)
+   	// console.log(data)
+   });
   }
 
 }

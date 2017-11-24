@@ -6,7 +6,7 @@ import { REPS } from './mock-reps';
 export class RepService {
   private reps: Rep[] = REPS;
 
-  getReps(): Rep[] {
+  public getReps(): Rep[] {
     return this.reps;
   }
 }

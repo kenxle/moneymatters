@@ -8,6 +8,7 @@ import { RepService } from '../rep/rep.service';
   selector: 'app-rep-list',
   templateUrl: './rep-list.component.html',
   styleUrls: ['./rep-list.component.css'],
+  providers: [RepService],
   encapsulation: ViewEncapsulation.None
 })
 
@@ -15,7 +16,7 @@ export class RepListComponent {
   reps = REPS;
   constructor(private RepService: RepService) { }
   ngOnInit() {
-
+  	// this.reps = RepService.getReps();
   }
 
 }
