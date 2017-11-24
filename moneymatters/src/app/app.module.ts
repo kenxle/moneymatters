@@ -4,6 +4,9 @@ import { Http, Response } from '@angular/http';
 import { NgModule } from '@angular/core';
 import * as d3 from 'd3';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { Ng2DropdownModule } from 'ng2-material-dropdown';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { RepService } from './rep/rep.service';
 import { AppComponent } from './app.component';
 import { RepListComponent } from './rep-list/rep-list.component';
@@ -31,8 +34,10 @@ import { BillComponent } from './bill/bill.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    Ng2DropdownModule
   ],
   bootstrap: [AppComponent],
   providers: [RepService]
