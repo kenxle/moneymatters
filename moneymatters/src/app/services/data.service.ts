@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { BillListComponent } from './bill-list.component';
 import {HttpClient} from '@angular/common/http';
 
 // import { Http, Headers, Response } from '@angular/http';
@@ -11,13 +10,17 @@ import 'rxjs/add/operator/map';
 
 
 @Injectable()
-export class BillListService {
+export class DataService {
   // results: string[];
   
   constructor (
     private http: HttpClient
   ) {}
 
+  getMemberList(chamber) {
+    let url = `api/members/${chamber}`
+    return this.http.get(url);
+  }
   getBillList() {
   	let url = `api/bills`
   	return this.http.get(url);

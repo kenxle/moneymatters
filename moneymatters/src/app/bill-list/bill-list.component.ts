@@ -1,17 +1,17 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { BillListService } from './bill-list.service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-bill-list',
   templateUrl: './bill-list.component.html',
   styleUrls: ['./bill-list.component.css'],
-  providers: [BillListService],
+  providers: [DataService],
   encapsulation: ViewEncapsulation.None
 })
 export class BillListComponent implements OnInit {
   bills;
 
-  constructor(private _billListService: BillListService) { }
+  constructor(private _billListService: DataService) { }
 
     
   ngOnInit() {

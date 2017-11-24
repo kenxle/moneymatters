@@ -7,21 +7,72 @@ const FakeAPI = 'https://jsonplaceholder.typicode.com';
 const apiKey = '568de22f84c58ba85a90fd2ae779b0ae';
 const apiRoot = 'http://classic.maplight.org/services_open_api';
 
-const billSearchApi = (search, jurisdiction='us') =>
+const ppApiKey = 'LKV45QBHnDnobkwg65n1FjkNiQ34g1AgP0KNKS7d';
+
+const billSearch = ({search, jurisdiction='us'}) =>
   `${apiRoot}/map.bill_search_v1.json?apikey=${apiKey}&jurisdiction=${jurisdiction}&search=${search}`
-const billListApi = (session=115, jurisdiction='us', inc_orgs=0, has_orgs=0) =>
+const billList = ({session=115, jurisdiction='us', inc_orgs=0, has_orgs=0}) =>
   `${apiRoot}/map.bill_list_v1.json?apikey=${apiKey}&jurisdiction=${jurisdiction}&session=${session}&include_organizations=${inc_orgs}&has_organizations=${has_orgs}`
-const billPositionApi = (billId=113, prefix='h', session=115, jurisdiction='us') => 
+const billPosition = ({billId=113, prefix='h', session=115, jurisdiction='us'}) => 
   `${apiRoot}/map.bill_positions_v1.json?apikey=${apiKey}&jurisdiction=${jurisdiction}&session=${session}&prefix=${prefix}&number=${billId}`
-const organizationSearchApi = (search, exact=0) => 
+const organizationSearch = ({search, exact=0}) => 
   `${apiRoot}/map.organization_search_v1.json?apikey=${apiKey}&search=${search}&exact=${exact}`
-const orgPositionsApi = (orgId=9027648, jurisdiction='us') => 
+const orgPositions = ({orgId=9027648, jurisdiction='us'}) => 
   `${apiRoot}/map.organization_positions_v1.json?apikey=${apiKey}&organization_id=${orgId}&jurisdiction=${jurisdiction}`
+
+
+const membersList = ({session=115, chamber='house'}) =>
+  `https://api.propublica.org/congress/v1/${session}/${chamber}/members.json`
+
+
 /* GET api listing. */
 router.get('/', (req, res) => {
   res.send('Hey, beautiful.');
 });
 
+/*
+Query Parameters
+
+Parameter Description
+congress  102-115 for House, 80-115 for Senate
+chamber house or senate
+https://projects.propublica.org/api-docs/congress-api/members/
+*/
+router.get('/members/:chamber', (req, res) => {
+  // Get bills list from maplight api
+  // 
+    let url = membersList({chamber: req.params.chamber})
+    console.log("members call. GETing: " + url)
+    axios.get(url, {
+      headers: {
+        'X-API-Key': ppApiKey
+      }
+    })
+    .then(bills => {
+      res.status(200).json(bills.data.results[0].members);
+    })
+    .catch(error => {
+      res.status(500).send(error)
+    });
+});
+
+router.get('/members/:chamber/:session', (req, res) => {
+  // Get bills list from maplight api
+  // 
+    let url = membersList({chamber: req.params.chamber, session: req.params.session})
+    console.log("members call. GETing: " + url)
+    axios.get(url, {
+      headers: {
+        'X-API-Key': ppApiKey
+      }
+    })
+    .then(bills => {
+      res.status(200).json(bills.data);
+    })
+    .catch(error => {
+      res.status(500).send(error)
+    });
+});
 
 /*
 rguments
@@ -35,7 +86,7 @@ http://classic.maplight.org/services_open_api/map.bill_search_v1
 router.get('/bills/search/:str', (req, res) => {
   // Get bills list from maplight api
   // 
-    axios.get(billSearchApi(search=req.params.str))
+    axios.get(billSearch({search: req.params.str}))
     .then(bills => {
       res.status(200).json(bills.data);
     })
@@ -63,7 +114,7 @@ has_organizations optional boolean
 router.get('/bills', (req, res) => {
   // Get bills list from maplight api
   // 
-    axios.get(billListApi())
+    axios.get(billList({}))
     .then(bills => {
       res.status(200).json(bills.data);
     })
@@ -99,7 +150,7 @@ Number of the bill, without prefix.
 router.get('/bill/:billId/position', (req, res) => {
   // Get a single bill position from maplight api
   // 
-    axios.get(billPositionApi(billId=req.params.billId))
+    axios.get(billPosition({billId: req.params.billId}))
     .then(bills => {
       res.status(200).json(bills.data);
     })
@@ -120,7 +171,7 @@ exact optional boolean
 */
 router.get('/organization/search/:str', (req, res) => {
   // find an org's id by a string search
-    axios.get(organizationSearchApi(search=req.params.str))
+    axios.get(organizationSearch({search: req.params.str}))
     .then(bills => {
       res.status(200).json(bills.data);
     })
@@ -141,7 +192,7 @@ http://classic.maplight.org/services_open_api/map.organization_positions_v1
 */
 router.get('/organization/:orgId/positions', (req, res) => {
   // Get a single bill position from maplight api
-    axios.get(orgPositionsApi(orgId=req.params.orgId))
+    axios.get(orgPositions({orgId: req.params.orgId}))
     .then(bills => {
       res.status(200).json(bills.data);
     })
