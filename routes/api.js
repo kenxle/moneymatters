@@ -6,17 +6,43 @@ const axios = require('axios');
 const FakeAPI = 'https://jsonplaceholder.typicode.com';
 const apiKey = '568de22f84c58ba85a90fd2ae779b0ae';
 const apiRoot = 'http://classic.maplight.org/services_open_api';
-// FIXME mlapi
+
+const billSearchApi = (search, jurisdiction='us') =>
+  `${apiRoot}/map.bill_search_v1.json?apikey=${apiKey}&jurisdiction=${jurisdiction}&search=${search}`
 const billListApi = (session=115, jurisdiction='us', inc_orgs=0, has_orgs=0) =>
   `${apiRoot}/map.bill_list_v1.json?apikey=${apiKey}&jurisdiction=${jurisdiction}&session=${session}&include_organizations=${inc_orgs}&has_organizations=${has_orgs}`
 const billPositionApi = (billId=113, prefix='h', session=115, jurisdiction='us') => 
   `${apiRoot}/map.bill_positions_v1.json?apikey=${apiKey}&jurisdiction=${jurisdiction}&session=${session}&prefix=${prefix}&number=${billId}`
-
+const organizationSearchApi = (search, exact=0) => 
+  `${apiRoot}/map.organization_search_v1.json?apikey=${apiKey}&search=${search}&exact=${exact}`
+const orgPositionsApi = (orgId=9027648, jurisdiction='us') => 
+  `${apiRoot}/map.organization_positions_v1.json?apikey=${apiKey}&organization_id=${orgId}&jurisdiction=${jurisdiction}`
 /* GET api listing. */
 router.get('/', (req, res) => {
   res.send('Hey, beautiful.');
 });
 
+
+/*
+rguments
+
+jurisdiction required enum
+us refers to the United States Congress.
+search required string
+String to be searched, i.e., the full name or partial name of a bill.
+http://classic.maplight.org/services_open_api/map.bill_search_v1
+*/
+router.get('/bills/search/:str', (req, res) => {
+  // Get bills list from maplight api
+  // 
+    axios.get(billSearchApi(search=req.params.str))
+    .then(bills => {
+      res.status(200).json(bills.data);
+    })
+    .catch(error => {
+      res.status(500).send(error)
+    });
+});
 // Get all bills
 /*
 http://classic.maplight.org/services_open_api/map.bill_list_v1
@@ -47,6 +73,7 @@ router.get('/bills', (req, res) => {
 });
 
 /*
+https://maplight.org/data_guide/bill-positions-api-documentation/
 Arguments
 
 jurisdiction required enum
@@ -69,7 +96,7 @@ sc Senate Concurrent Resolution (i.e. S.Con.Res.)
 number required string
 Number of the bill, without prefix.
 */
-router.get('/bill/position/:billId', (req, res) => {
+router.get('/bill/:billId/position', (req, res) => {
   // Get a single bill position from maplight api
   // 
     axios.get(billPositionApi(billId=req.params.billId))
@@ -80,6 +107,49 @@ router.get('/bill/position/:billId', (req, res) => {
       res.status(500).send(error)
     });
 });
+
+/*
+Arguments
+
+search required string
+String to be searched, i.e., the full name or partial name of an organization that takes a position on legislation.
+
+exact optional boolean
+0 or 1, default 0. 1 performs an exact string match on the entire contents of the field that contains names of organizations. This string match is not case sensitive. 0 performs an partial string match within the field that contains names of organizations.
+
+*/
+router.get('/organization/search/:str', (req, res) => {
+  // find an org's id by a string search
+    axios.get(organizationSearchApi(search=req.params.str))
+    .then(bills => {
+      res.status(200).json(bills.data);
+    })
+    .catch(error => {
+      res.status(500).send(error)
+    });
+});
+
+/*
+Arguments
+
+organization_id required int
+MapLight's internal identifier for organizations; output from the map.organization_search method.
+
+jurisdiction required enum
+us refers to the United States Congress.
+http://classic.maplight.org/services_open_api/map.organization_positions_v1 
+*/
+router.get('/organization/:orgId/positions', (req, res) => {
+  // Get a single bill position from maplight api
+    axios.get(orgPositionsApi(orgId=req.params.orgId))
+    .then(bills => {
+      res.status(200).json(bills.data);
+    })
+    .catch(error => {
+      res.status(500).send(error)
+    });
+});
+
 
 // Get all posts
 router.get('/fake', (req, res) => {

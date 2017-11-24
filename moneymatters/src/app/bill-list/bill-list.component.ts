@@ -15,9 +15,9 @@ export class BillListComponent implements OnInit {
 
     
   ngOnInit() {
-   this.bills = this._billListService.getBills().subscribe(data => {
-   	console.log(data);
-   });
+   // this.bills = this._billListService.getBills().subscribe(data => {
+   // 	console.log(data);
+   // });
   }
 
 }

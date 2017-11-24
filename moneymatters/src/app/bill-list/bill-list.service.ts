@@ -14,7 +14,7 @@ export class BillListService {
   ) {}
 
   getBills() {
-  	let url = `http://classic.maplight.org/services_open_api/map.bill_list_v1.json?apikey=568de22f84c58ba85a90fd2ae779b0ae&jurisdiction=us&session=115&include_organizations=0&has_organizations=0`
+  	let url = `/api/bills`
   	return this.http.get(url)
     .map((res:Response) => res.json());
   	// this.http.get(url).subscribe(data => {
