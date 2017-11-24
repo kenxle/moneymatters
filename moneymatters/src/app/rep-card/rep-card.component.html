@@ -1,7 +1,7 @@
 <div class="rep-card">
   <div class="rep-watermark {{rep.party | lowercase }}">{{ rep.party | firstLetter }}</div>
   <h2>{{rep.name}}</h2>
-  <h1>{{rep.district}}</h1>
+  <h4>{{rep.district}}</h4>
   <p>{{rep.money | currency }}</p>
   <p> from {{ rep.contributions }} {{ rep.contributions > 1 ? "contributions" : "contribution"}}</p>
   <footer><a class="rep-toggle">Expand</a></footer>

@@ -1,14 +1,43 @@
 @import "reset";
 
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Helvetica', sans-serif;
+  font-weight: 700;
+}
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.4rem;
+}
 .app-container {
   display: flex;
   flex-flow: row wrap;
 }
 .rep-card {
+  position: relative;
   padding: 1rem;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+  .rep-watermark {
+    font-size: 6rem;
+    position: absolute;
+    right: 1rem;
+    top: 0.5rem;
+    opacity: 0.15;
+    color: #ababab;
+    &.republican {
+      color: #F90808;
+    }
+    &.democrat {
+      color: #007EFF;
+    }
+  }
 }
 
+.rep-list {
+  max-width: 600px;
+}
 .rep-filters {
   display: flex;
   flex-flow: row wrap;
