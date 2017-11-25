@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Rep } from '../rep/rep';
-// import { REPS } from '../rep/mock-reps';
 import { DataService } from '../services/data.service';
 
 
@@ -13,7 +12,6 @@ import { DataService } from '../services/data.service';
 })
 
 export class RepListComponent {
-  // reps = REPS;
   reps: Rep[];
 
   constructor(private _dataService: DataService) { }
@@ -25,7 +23,7 @@ export class RepListComponent {
 	   	this.reps = data
 	   	console.log(this.reps)
 
-	});
+    });
   }
 
 }

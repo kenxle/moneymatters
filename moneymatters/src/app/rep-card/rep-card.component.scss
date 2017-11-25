@@ -1,9 +1,29 @@
+.mat-card {
+  background-color: #fff;
+  color: #424242;
+  padding: 0.5rem !important;
+  width: 160px;
+  height: 150px;
+  position: relative;
+  .mat-card-content {
+    margin-bottom: 5px;
+  }
+  .mat-card-actions {
+    position: absolute;
+    bottom: 1rem;
+    right: 16px;
+  }
+}
+
+
+.mat-card-subtitle {
+  color: #424242;
+}
 .rep-card {
+  margin: 0.5rem;
   position: relative;
   padding: 0.5rem;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
-  width: 160px;
-  height: 100px;
   .rep-watermark {
     font-size: 6rem;
     position: absolute;

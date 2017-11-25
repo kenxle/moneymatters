@@ -1,12 +1,15 @@
 <ul class="rep-filters">
   <li>
+    <button mat-raised-button class="rep-button" (click)="setActive($event)">Bill</button>
+  </li>
+  <li>
     <ng2-dropdown>
-        <ng2-dropdown-button>
-              <li><button class="rep-button" (click)="setActive($event)">Bill</button></li>
+        <ng2-dropdown-button showCaret="True">
+          <li><button mat-raised-button class="rep-button" (click)="setActive($event)">Money</button></li>
         </ng2-dropdown-button>
         <ng2-dropdown-menu>
-            <ng2-menu-item *ngFor="let bill of bill">
-                {{ bill }}
+            <ng2-menu-item preventClose="True">
+              <mat-slider min="1" max="5" step="0.5" value="1.5"></mat-slider>
             </ng2-menu-item>
 
             <div class='ng2-menu-divider'></div>
@@ -19,24 +22,8 @@
   </li>
   <li>
     <ng2-dropdown>
-        <ng2-dropdown-button showCaret="True">
-            <li><button class="rep-button" (click)="setActive($event)">Money</button></li>
-        </ng2-dropdown-button>
-        <ng2-dropdown-menu>
-            <ng2-menu-item preventClose="True">Less than $1000</ng2-menu-item>
-
-            <div class='ng2-menu-divider'></div>
-              <ul class="footer-menu">
-                <li><button class="rep-button">Cancel</button></li>
-                <li><button class="rep-button">Apply</button></li>
-              </ul>
-        </ng2-dropdown-menu>
-    </ng2-dropdown>
-  </li>
-  <li>
-    <ng2-dropdown>
       <ng2-dropdown-button>
-        <button class="rep-button" (click)="setActive($event)">Party</button>
+        <li><button mat-raised-button class="rep-button" (click)="setActive($event)">Party</button></li>
       </ng2-dropdown-button>
     </ng2-dropdown>
   </li>
