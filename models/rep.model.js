@@ -7,6 +7,7 @@ var RepSchema = new Schema(
   {
     id: {type: String, required: true},
     FECId: {type: String, required: true},
+    CRPId: {type: String, required: true},
     first_name: {type: String, required: true},
     last_name: {type: String, required: true},
     date_of_birth: {type: String, required: true},

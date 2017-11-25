@@ -13,9 +13,11 @@
     "debug": "~2.6.9",
     "express": "~4.15.5",
     "jade": "~1.11.0",
+    "json-stringify": "^1.0.0",
     "mongoose": "^4.13.5",
     "morgan": "~1.9.0",
     "ngx-pagination": "^3.0.3",
+    "parse-json": "^4.0.0",
     "serve-favicon": "~2.4.5",
     "tslib": "^1.8.0"
   },
