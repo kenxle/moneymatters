@@ -12,18 +12,25 @@ import { DataService } from '../services/data.service';
 })
 
 export class RepListComponent {
-  reps: Rep[];
+  reps;
 
   constructor(private _dataService: DataService) { }
   ngOnInit() {
   	this._dataService.getMemberList('house').subscribe(data => {
-      // for(rep of data){
+      // console.log("data" +data)
+      // for(let rep of data){
       //   this.reps[rep.id] = new Rep(data)
-      // }
-	   	this.reps = data
+     //  // }
+	   	// this.reps = data.map(it => new Rep(...it))
+      this.reps = data;
 	   	console.log(this.reps)
 
     });
+  }
+
+  applyFilters(this){
+
+    this.reps = this.reps[0]; //test stub
   }
 
 }

@@ -13,6 +13,11 @@ router.get('/', (req, res) => {
 router.get('/members/:chamber', rep_controller.list);
 
 router.get('/update/database', rep_controller.updateDatabase);
+router.get('/update/database/members', rep_controller.updateDatabaseMembers);
+
+router.get('/member/:crpid/interestcontributions', rep_controller.getInterestContributions);
+
+router.get('/members/:chamber/:session', rep_controller.listChamberSession);
 
 /*
 https://propublica.github.io/campaign-finance-api-docs/#get-a-specific-candidate
@@ -38,23 +43,7 @@ router.get('/member/:FECId/contributions', (req, res) => {
       res.status(500).send(error)
     });
 });
-router.get('/members/:chamber/:session', (req, res) => {
-  // Get bills list from maplight api
-  // 
-    let url = membersList({chamber: req.params.chamber, session: req.params.session})
-    console.log("GET: " + url)
-    axios.get(url, {
-      headers: {
-        'X-API-Key': ppApiKey
-      }
-    })
-    .then(bills => {
-      res.status(200).json(bills.data);
-    })
-    .catch(error => {
-      res.status(500).send(error)
-    });
-});
+
 
 /*
 rguments

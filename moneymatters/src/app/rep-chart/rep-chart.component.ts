@@ -15,14 +15,13 @@ import * as $ from 'jquery';
   providers: [DataService]
 })
 export class RepChartComponent implements OnInit {
+  reps;
   constructor(private _dataService: DataService) { }
-
   ngOnInit() {
 
     // ChartService.instantiate();
     let svg;
     let houseRows = [60, 58, 53, 49, 45, 41, 37, 33, 30, 28];
-
     this._dataService.getMemberList('house').subscribe(data => {
       this.reps = data
     });
