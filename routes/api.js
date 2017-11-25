@@ -1,28 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-// declare axios for making http requests
-const axios = require('axios');
-const FakeAPI = 'https://jsonplaceholder.typicode.com';
-const apiKey = '568de22f84c58ba85a90fd2ae779b0ae';
-const apiRoot = 'http://classic.maplight.org/services_open_api';
-
-const ppApiKey = 'LKV45QBHnDnobkwg65n1FjkNiQ34g1AgP0KNKS7d';
-
-const billSearch = ({search, jurisdiction='us'}) =>
-  `${apiRoot}/map.bill_search_v1.json?apikey=${apiKey}&jurisdiction=${jurisdiction}&search=${search}`
-const billList = ({session=115, jurisdiction='us', inc_orgs=0, has_orgs=0}) =>
-  `${apiRoot}/map.bill_list_v1.json?apikey=${apiKey}&jurisdiction=${jurisdiction}&session=${session}&include_organizations=${inc_orgs}&has_organizations=${has_orgs}`
-const billPosition = ({billId=113, prefix='h', session=115, jurisdiction='us'}) => 
-  `${apiRoot}/map.bill_positions_v1.json?apikey=${apiKey}&jurisdiction=${jurisdiction}&session=${session}&prefix=${prefix}&number=${billId}`
-const organizationSearch = ({search, exact=0}) => 
-  `${apiRoot}/map.organization_search_v1.json?apikey=${apiKey}&search=${search}&exact=${exact}`
-const orgPositions = ({orgId=9027648, jurisdiction='us'}) => 
-  `${apiRoot}/map.organization_positions_v1.json?apikey=${apiKey}&organization_id=${orgId}&jurisdiction=${jurisdiction}`
-
-
-const membersList = ({session=115, chamber='house'}) =>
-  `https://api.propublica.org/congress/v1/${session}/${chamber}/members.json`
+var rep_controller = require('../controllers/rep_controller.js');
 
 
 /* GET api listing. */
@@ -30,18 +9,22 @@ router.get('/', (req, res) => {
   res.send('Hey, beautiful.');
 });
 
+
+router.get('/members/:chamber', rep_controller.list);
+
+router.get('/update/database', rep_controller.updateDatabase);
+
 /*
-Query Parameters
+https://propublica.github.io/campaign-finance-api-docs/#get-a-specific-candidate
+URL Parameters
 
 Parameter Description
-congress  102-115 for House, 80-115 for Senate
-chamber house or senate
-https://projects.propublica.org/api-docs/congress-api/members/
-*/ 
-router.get('/members/:chamber', (req, res) => {
+fec-id  The FEC-assigned 9-character ID of a candidate. To find a candidate’s official FEC ID, use a candidate search request or the FEC web site.
+*/
+router.get('/member/:FECId/contributions', (req, res) => {
   // Get bills list from maplight api
   // 
-    let url = membersList({chamber: req.params.chamber})
+    let url = memberContributions({FECId: req.params.FECId})
     console.log("GET: " + url)
     axios.get(url, {
       headers: {
@@ -49,13 +32,12 @@ router.get('/members/:chamber', (req, res) => {
       }
     })
     .then(bills => {
-      res.status(200).json(bills.data.results[0].members);
+      res.status(200).json(bills.data.results);
     })
     .catch(error => {
       res.status(500).send(error)
     });
 });
-
 router.get('/members/:chamber/:session', (req, res) => {
   // Get bills list from maplight api
   // 

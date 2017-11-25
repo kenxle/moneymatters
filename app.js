@@ -7,13 +7,24 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var morgan = require('morgan')
-
+var util = require('util')
 
 // Get our API routes
 const api = require('./routes/api');
 
 const app = express();
 
+//Set up mongoose connection
+var mongoose = require('mongoose');
+var mongoDB = 'mongodb://moneyapp:Onward&Upward@ds257485.mlab.com:57485/moneymattersmongo';
+mongoose.connect(mongoDB, {
+  useMongoClient: true
+});
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+mongoose.set('debug', (collectionName, method, query, doc) => {
+  console.log(`${collectionName}.${method}` + " " + util.inspect(query, false, 20), doc);
+});
 
 // var index = require('./routes/index');
 // var users = require('./routes/users');
@@ -52,7 +63,8 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  console.log("error: " + err)
+  res.send("error: " + err);
 });
 
 module.exports = app;

@@ -14,11 +14,14 @@ import { DataService } from '../services/data.service';
 
 export class RepListComponent {
   // reps = REPS;
-  reps;
+  reps: Rep[];
 
   constructor(private _dataService: DataService) { }
   ngOnInit() {
   	this._dataService.getMemberList('house').subscribe(data => {
+      // for(rep of data){
+      //   this.reps[rep.id] = new Rep(data)
+      // }
 	   	this.reps = data
 	   	console.log(this.reps)
 
