@@ -23,7 +23,7 @@ export class RepListComponent {
      //  // }
 	   	// this.reps = data.map(it => new Rep(...it))
       this.reps = data;
-	   	console.log(this.reps)
+	   	// console.log(this.reps)
 
     });
   }

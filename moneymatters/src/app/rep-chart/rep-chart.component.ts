@@ -18,15 +18,31 @@ export class RepChartComponent implements OnInit {
   reps;
   constructor(private _dataService: DataService) { }
   ngOnInit() {
-
-    // ChartService.instantiate();
     let svg;
+    let reps;
+
+    // the number of nodes in each row of the house map
     let houseRows = [60, 58, 53, 49, 45, 41, 37, 33, 30, 28];
+
     this._dataService.getMemberList('house').subscribe(data => {
-      this.reps = data
+      reps = data
     });
-    // [37, 33, 30, 28];
-    // 33, 37, 41, 45, 49, 53, 58, 60
+
+    // let houseArray = []
+    // for(let i = 0; i < houseRows.length; i++) {
+    //     let houseRow = [];
+    //     let index = 0;
+    //     for(let j = 0; j < houseRows[i]; j++) {
+    //       houseRow.push(this.reps[index])
+    //       index += j;
+    //     }
+    //     houseArray.push(houseRow);
+    // }
+    //
+    // console.log(houseArray);
+
+    // add data to house nodes
+    // TODO wire this up with rep list data
     let createHouseNodes = function(nodeBase, radius) {
       var nodes = [],
         angle,
@@ -39,7 +55,6 @@ export class RepChartComponent implements OnInit {
         height;
       for (let j = 0; j < nodeBase.length; j++) {
         let localradius = (radius) - 15 * (j + 1);
-        console.log(localradius);
         width = (localradius) + 50;
         height = radius + 50;
         for (i = 0; i < nodeBase[j]; i++) {
@@ -53,47 +68,29 @@ export class RepChartComponent implements OnInit {
       }
       return nodes;
     }
+
+    // create the svg
     var createSvg = function(radius, callback) {
       d3.selectAll('svg').remove();
       svg = d3.select('#canvas').append('svg:svg')
         .attr('width', 650)
-        .attr('height', 500);
+        .attr('height', 400);
       callback(svg);
     }
 
+    // color nodes by party
     var colorParties = function(svg, nodes) {
-      let elements = svg.selectAll('circle')
+      let dems = svg.selectAll('circle')
         .data(nodes)
         .filter(function(d) { return (d.party === "Dem") })
         .style("fill", "blue");
+      let reps = svg.selectAll('circle')
+        .data(nodes)
+        .filter(function(d) { return (d.party === "Rep") })
+        .style("fill", "red");
     }
 
-    var clusterElements = function() {
-      let padding = 1.5, // separation between same-color nodes
-        clusterPadding = 6, // separation between different-color nodes
-        maxRadius = 12;
-      var clusters = new Array();
-    }
-      // Use the pack layout to initialize node positions.
-//       d3.layout.pack()
-//         .sort(null)
-//         .size([width, height])
-//         .children(function(d) { return d.values; })
-//         .value(function(d) { return d.radius * d.radius; })
-//         .nodes({
-//             values: d3.nest()
-//             .key(function(d) { return d.cluster; })
-//             .entries(nodes)
-// });
-//
-//       var force = d3.layout.force()
-//         .nodes(nodes)
-//         .size([width, height])
-//         .gravity(.02)
-//         .charge(0)
-//         .on("tick", tick)
-//         .start();
-
+    // draw house members on svg
     var createHouseMembers = function(svg, nodes, elementRadius) {
       let element = svg.selectAll('circle')
         .data(nodes)
@@ -107,6 +104,7 @@ export class RepChartComponent implements OnInit {
         });
     }
 
+    // draw the layout for house
     var drawHouse = function(numnode, rad) {
       var numNodes = numnode || 100;
       var radius = rad || 250;
@@ -116,6 +114,7 @@ export class RepChartComponent implements OnInit {
       });
     }
 
+    // TODO draw the layout for clustering
     var drawClusters = function(numnode, rad) {
       var numNodes = numnode || 100;
       var radius = rad || 300;
