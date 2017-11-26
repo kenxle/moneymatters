@@ -31,9 +31,4 @@ export class RepListComponent {
 
   }
 
-  applyFilters(this){
-
-    this.reps = this.reps[0]; //test stub
-  }
-
 }

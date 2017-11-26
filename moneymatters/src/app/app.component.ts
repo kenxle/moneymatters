@@ -24,13 +24,18 @@ export class AppComponent {
 	   	// this.reps = data.map(it => new Rep(...it))
 
       this.reps = data;
+      this.reps.map((rep) => {rep.show = true;});
+    	
 	   	console.log(this.reps)
 
 	});
   	}
 
-	applyFilters(this){
+	applyFilters(this, filters){
 		console.log("made it to the app");
-    	this.reps = this.reps[1]; //test stub
+		console.log(filters);
+		let party = filters.party == 'democrat' ? 'd' : 'r';
+		this.reps.map(rep => {rep.show = rep.party.toLowerCase() == party ? true : false;});
+    	console.log(this.reps)
 	}
 }

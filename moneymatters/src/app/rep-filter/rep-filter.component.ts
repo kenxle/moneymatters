@@ -16,13 +16,43 @@ export class RepFilterComponent implements OnInit {
 
   }
 
-  callParent() {
+  callParent(filters) {
     console.log("call parent")
     // this.filterChanged.next('somePhone');
-    this.filterChanged.next('somePhone');
+    this.filterChanged.next(filters);
   }
+
+  filterOpened($event){
+    console.log("filter opened: ");
+    console.log($event);
+  }
+  filterClosed($event){
+    console.log("filter closed: ");
+    console.log($event);
+  }
+
+  applyFilter($event){
+    console.log("apply filter: ");
+    console.log($event);
+  }
+
+  applyPartyFilter($event){
+
+    console.log("apply party filter: " + $event.value);
+    console.log($event);
+    this.callParent({party: $event.value})
+  }
+
+  cancelFilter($event){
+
+  }
+
+  collectFilters(){
+
+  }
+
   setActive($event, filter) {
-    this.callParent();
+    // this.callParent();
     let classList: string[] = $event.target.className.split(/\s+/);
     if(classList.indexOf("active") === -1) {
       $event.target.classList.add("active");
