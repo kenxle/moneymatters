@@ -185,8 +185,9 @@ exports.updateDatabase = (req, res) => {
       
       wait = 500;
       members.map(member =>{
-      	Rep.update(
-		    {id: member.id,
+      	Rep.update({id: member.id},
+		    {
+		    	id: member.id,
 		    	 FECId: member.fec_candidate_id,
 		    	 CRPId: member.crp_id,
 			    first_name: member.first_name,
@@ -275,7 +276,7 @@ exports.updateDatabaseMembers = (req, res) => {
       
       wait = 500;
       members.map(member =>{
-      	Rep.update(
+      	Rep.update({id: member.id},
 		    {id: member.id,
 		    	 FECId: member.fec_candidate_id,
 		    	 CRPId: member.crp_id,

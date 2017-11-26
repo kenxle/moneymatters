@@ -5,6 +5,13 @@ import { NgModule } from '@angular/core';
 import * as d3 from 'd3';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { Ng2DropdownModule } from 'ng2-material-dropdown';
+import {MatButtonModule,
+        MatCardModule,
+        MatExpansionModule,
+        MatSliderModule,
+        MatPaginatorModule
+        } from '@angular/material';
+import {} from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { RepService } from './rep/rep.service';
@@ -37,7 +44,12 @@ import { BillComponent } from './bill/bill.component';
     BrowserAnimationsModule,
     HttpClientModule,
     NgxPaginationModule,
-    Ng2DropdownModule
+    Ng2DropdownModule,
+    MatButtonModule,
+    MatCardModule,
+    MatExpansionModule,
+    MatSliderModule,
+    MatPaginatorModule
   ],
   bootstrap: [AppComponent],
   providers: [DataService]

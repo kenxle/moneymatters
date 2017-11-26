@@ -31,6 +31,6 @@ export class AppComponent {
 
 	applyFilters(this){
 		console.log("made it to the app");
-    	this.reps = this.reps[0]; //test stub
+    	this.reps = this.reps[1]; //test stub
 	}
 }

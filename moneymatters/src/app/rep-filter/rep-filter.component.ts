@@ -17,10 +17,12 @@ export class RepFilterComponent implements OnInit {
   }
 
   callParent() {
+    console.log("call parent")
+    // this.filterChanged.next('somePhone');
     this.filterChanged.next('somePhone');
   }
   setActive($event, filter) {
-
+    this.callParent();
     let classList: string[] = $event.target.className.split(/\s+/);
     if(classList.indexOf("active") === -1) {
       $event.target.classList.add("active");

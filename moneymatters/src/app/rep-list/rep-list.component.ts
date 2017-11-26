@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { Rep } from '../rep/rep';
-// import { REPS } from '../rep/mock-reps';
 import { DataService } from '../services/data.service';
 
 
@@ -13,6 +12,7 @@ import { DataService } from '../services/data.service';
 })
 
 export class RepListComponent {
+ 
   // reps = REPS;
   @Input() reps;
 
@@ -28,6 +28,7 @@ export class RepListComponent {
 	  //  	console.log(this.reps)
 
 	// });
+
   }
 
   applyFilters(this){
@@ -36,5 +37,3 @@ export class RepListComponent {
   }
 
 }
-
-    

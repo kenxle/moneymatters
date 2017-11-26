@@ -3,6 +3,7 @@ import * as d3 from 'd3';
 import { Rep } from '../rep/rep';
 import { ChartService } from '../services/chartservice';
 import { RepService } from '../rep/rep.service';
+import { DataService } from '../services/data.service';
 import * as $ from 'jquery';
 
 
@@ -10,15 +11,20 @@ import * as $ from 'jquery';
   selector: 'app-rep-chart',
   templateUrl: './rep-chart.component.html',
   styleUrls: ['./rep-chart.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  providers: [DataService]
 })
 export class RepChartComponent implements OnInit {
-  constructor() { }
-
+  reps;
+  constructor(private _dataService: DataService) { }
   ngOnInit() {
+
     // ChartService.instantiate();
     let svg;
     let houseRows = [60, 58, 53, 49, 45, 41, 37, 33, 30, 28];
+    this._dataService.getMemberList('house').subscribe(data => {
+      this.reps = data
+    });
     // [37, 33, 30, 28];
     // 33, 37, 41, 45, 49, 53, 58, 60
     let createHouseNodes = function(nodeBase, radius) {

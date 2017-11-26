@@ -1,4 +1,13 @@
-
+pagination-controls {
+  width: 100%;
+  margin-top: 3rem;
+  margin-left: auto;
+  margin-right: auto;
+  pagination-content {
+    display: flex;
+    justify-content: center;
+  }
+}
 .rep-list {
   max-width: 600px;
   display: flex;
