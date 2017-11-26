@@ -40,6 +40,6 @@ import { BillComponent } from './bill/bill.component';
     Ng2DropdownModule
   ],
   bootstrap: [AppComponent],
-  providers: [RepService]
+  providers: [DataService]
 })
 export class AppModule { }

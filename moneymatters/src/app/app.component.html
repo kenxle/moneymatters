@@ -8,15 +8,12 @@
 
   <section class="rep-list">
     <div class="rep-filter">
-      <app-rep-filter></app-rep-filter>
+      <app-rep-filter (filterChanged)="applyFilters($event)"></app-rep-filter>
     </div>
-    <app-rep-list></app-rep-list>
+    <app-rep-list [reps]="reps"></app-rep-list>
   </section>
   <section class="rep-chart">
     <app-rep-chart></app-rep-chart>
   </section>
 
-  <section class="bill-list">
-  	<app-bill-list></app-bill-list>
-  </section>
 </article>

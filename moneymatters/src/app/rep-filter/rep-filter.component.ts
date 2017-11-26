@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { RepService } from '../rep/rep.service';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-rep-filter',
@@ -8,12 +9,18 @@ import { RepService } from '../rep/rep.service';
   encapsulation: ViewEncapsulation.None
 })
 export class RepFilterComponent implements OnInit {
+  @Output()
+      filterChanged:EventEmitter<string> = new EventEmitter();
 
   constructor() {
 
   }
 
+  callParent() {
+    this.filterChanged.next('somePhone');
+  }
   setActive($event, filter) {
+
     let classList: string[] = $event.target.className.split(/\s+/);
     if(classList.indexOf("active") === -1) {
       $event.target.classList.add("active");
