@@ -59,8 +59,9 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
       //will handle things like color updates, but not a new list of links
       // this.graph.initSimulation(this._options); 
 
-      // looks like it might keep the nodes and add new links
-      // after the ticket stops, this just seems to show the final locations
+      // re-init the entire thing. elements that are the same will stay where they are
+      // so nodes will keep their position if links are changed, and then adjust to the 
+      // new links
       this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this._links, this.options);
       this.graph.initSimulation(this._options); 
       this.graph.ticker.subscribe((d) => {

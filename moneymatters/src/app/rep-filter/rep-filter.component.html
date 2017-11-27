@@ -28,18 +28,19 @@
         </ng2-dropdown-button>
 
         <ng2-dropdown-menu>
-            <ng2-menu-item preventClose="True">
-              <mat-slider (onChange)="applyFilter($event)" min="1" max="50000000" step="0.5" value="50000000"></mat-slider> 
+            <ng2-menu-item >
+              <mat-slider #slider min="1" max="{{money_max}}" step="0.5" value="100"
+              (change)="applyMoneyFilter($event)"></mat-slider> {{slider.value}}
             </ng2-menu-item>
 
-            <div class='ng2-menu-divider'></div>
+            <!-- <div class='ng2-menu-divider'></div> -->
 
-              <ul class="footer-menu">
+              <!-- <ul class="footer-menu">
                 <li><button class="rep-button" (click)="cancelFilter($event)">Cancel</button></li>
                 <li>
-                    <button class="rep-button" (click)="applyFilter($event)">Apply</button>
+                    <button class="rep-button" (click)="applyMoneyFilter($event)">Apply</button>
                 </li>
-              </ul>
+              </ul> -->
         </ng2-dropdown-menu>
 
     </ng2-dropdown>

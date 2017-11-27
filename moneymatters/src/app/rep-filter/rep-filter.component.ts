@@ -11,6 +11,7 @@ import { EventEmitter } from '@angular/core';
 export class RepFilterComponent implements OnInit {
   // @Input('filterPromise') filterPromise; 
   @Input('bills_list') bills_list;
+  @Input('money_max') money_max;
   @Output()
       filterChanged:EventEmitter<string> = new EventEmitter();
 
@@ -33,6 +34,7 @@ export class RepFilterComponent implements OnInit {
     console.log($event);
   }
 
+  // could probably have a generic way to do this
   applyFilter($event){
     console.log("apply filter: ");
     console.log($event);
@@ -43,6 +45,13 @@ export class RepFilterComponent implements OnInit {
     console.log("apply party filter: " + $event.value);
     console.log($event);
     this.callParent({party: $event.value})
+  }
+
+  applyMoneyFilter($event){
+
+    console.log("apply money filter: " + $event.value);
+    console.log($event);
+    this.callParent({money: $event.value})
   }
 
   cancelFilter($event){

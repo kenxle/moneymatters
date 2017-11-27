@@ -16,7 +16,7 @@ import { Node } from '../../../d3';
           dy = "-0.5em"
           class="node-name"
           [attr.font-size]="node.fontSize">
-        {{node.id}}
+        {{node.first_name}}
       </svg:text>
       <svg:text
           dy = "0.5em"
