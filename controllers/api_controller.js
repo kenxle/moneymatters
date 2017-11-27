@@ -59,7 +59,7 @@ exports.getBillList = (req, res) => {
     console.log("GET: " + url)
     axios.get(url)
     .then(bills => {
-      res.status(200).json(bills.data);
+      res.status(200).json(bills.data.bills);
     })
     .catch(error => {
       res.status(500).send(error)
