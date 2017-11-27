@@ -11,6 +11,7 @@ export class Node implements d3.SimulationNodeDatum {
   fy?: number | null;
   party?: String;
   active: boolean;
+  money: number;
 
   id: string;
   linkCount: number = 0;
@@ -22,7 +23,7 @@ export class Node implements d3.SimulationNodeDatum {
 
 
   get r() {
-    return 5;
+    return 7;
   }
 
   get fontSize() {

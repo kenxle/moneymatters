@@ -22,13 +22,21 @@ import { D3Service, ForceDirectedGraph, Node } from '../../d3';
 })
 export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
   @Input('nodes') nodes;
-  @Input('links') links;
+  @Input('links') _links;
+//   _allowDay: boolean;
+  get links() {
+      return this._links;
+  }
+  set links(value) {
+      this._links = value;
+      // this.graph.initSimulation(this._options) 
+  }
   @Input('dataPromise') dataPromise;
 
   @Input('dataAvailable') dataAvailable = false;
 
   graph: ForceDirectedGraph;
-  private _options: { width, height } = { width: 600, height: 600 };
+  private _options: { width, height } = { width: 600, height: 800 };
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -39,6 +47,7 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
   constructor(private d3Service: D3Service, private ref: ChangeDetectorRef) {}
   
   ngOnChanges(changes: SimpleChanges) {
+    
     // console.log("graph *simple* changes...");
     //   console.log(changes);
     //   // console.log('prev value: ', name.previousValue);
@@ -67,7 +76,7 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
     this.dataPromise.subscribe(data => {
       console.log("oninit promise complete")
       /** Receiving an initialized simulated graph from our custom d3 service */
-      this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this.links, this.options);
+      this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this._links, this.options);
 
       /** Binding change detection check on each tick
        * This along with an onPush change detection strategy should enforce checking only when relevant!

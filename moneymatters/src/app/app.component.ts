@@ -33,14 +33,15 @@ export class AppComponent {
 		      getIndex = number => number - 1;
 
 		/** constructing the nodes array */
-		for (let i = 0; i < N; i++) {
-		  let n = new Node(this.reps[i].first_name)
+		this.reps.map(rep =>{
+		  let n = new Node(rep.first_name)
 		  n.x = 0;
 		  n.y = 0;
-		  n.party = this.reps[i].party
-		  n.active = this.reps[i].show
+		  n.party = rep.party;
+		  n.active = rep.show;
+		  n.money = rep.total_contributions;
 		  this.nodes.push(n);
-		}
+		});
 		
 		let dems = this.nodes.filter(n => n.party.toLowerCase() == 'd')
 		
@@ -83,7 +84,7 @@ export class AppComponent {
   	}
 
 	applyFilters(this, filters){
-		console.log("made it to the app");
+		console.log("applyfilters");
 		console.log(filters);
 		let party = filters.party == 'democrat' ? 'd' : 'r';
 		this.reps.map(rep => {rep.show = rep.party.toLowerCase() == party ? true : false;});

@@ -4,9 +4,9 @@ import { Node } from './node';
 import * as d3 from 'd3';
 
 const FORCES = {
-  LINKS: 2,
-  COLLISION: 1/3,
-  CHARGE: -0.01
+  LINKS: 1,
+  COLLISION: 0.6,
+  CHARGE: -0.01 
 }
 
 export class ForceDirectedGraph {
@@ -47,6 +47,7 @@ export class ForceDirectedGraph {
   }
 
   initLinks() {
+    console.log('initLinks');
     if (!this.simulation) {
       throw new Error('simulation was not initialized yet');
     }
