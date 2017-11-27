@@ -24,6 +24,7 @@ export class Rep {
   total_from_individuals: number;
   total_from_pacs: number;
   total_contributions: number;
+  show: boolean;
 
   // addMoney(data){
   // }

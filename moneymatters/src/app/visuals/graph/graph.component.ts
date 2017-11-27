@@ -10,7 +10,7 @@ import { D3Service, ForceDirectedGraph, Node } from '../../d3';
   selector: 'graph',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <svg #svg [attr.width]="_options.width" [attr.height]="_options.height">
+    <svg #svg [attr.width]="options.width" [attr.height]="options.height">
       <g [zoomableOf]="svg">
         <g [linkVisual]="link" *ngFor="let link of links"></g>
         <g [nodeVisual]="node" *ngFor="let node of nodes"
@@ -63,7 +63,7 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
       // so nodes will keep their position if links are changed, and then adjust to the 
       // new links
       this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this._links, this.options);
-      this.graph.initSimulation(this._options); 
+      this.graph.initSimulation(this.options); 
       this.graph.ticker.subscribe((d) => {
         this.ref.markForCheck();
         // console.log('ticker ' + new Date().getTime())
