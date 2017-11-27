@@ -29,8 +29,13 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
   }
   set links(value) {
       this._links = value;
+      this.ref.markForCheck();
+      // if(this.started){
+      //   this.graph.initSimulation(this.options);
+      // }
       // this.graph.initSimulation(this._options) 
   }
+  started: boolean = false;
   @Input('dataPromise') dataPromise;
 
   @Input('dataAvailable') dataAvailable = false;
@@ -47,9 +52,17 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
   constructor(private d3Service: D3Service, private ref: ChangeDetectorRef) {}
   
   ngOnChanges(changes: SimpleChanges) {
-    
-    // console.log("graph *simple* changes...");
-    //   console.log(changes);
+    console.log("graph *simple* changes...");
+    console.log(changes);
+    console.log("simulation running? " +this.started);
+    if(this.started){
+      // if(changes.nodes){
+      //   this.graph.simulation.nodes.exit(changes.nodes.previousValue);
+      //   this.graph.enter(changes.nodes.currentValue)
+      // }
+      this.graph.initSimulation(this._options);
+    }
+    //   
     //   // console.log('prev value: ', name.previousValue);
     //   // console.log('got name: ', name.currentValue);
     //   this.dataAvailable = changes.dataAvailable.currentValue
@@ -85,6 +98,7 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
        */
       this.graph.ticker.subscribe((d) => {
         this.ref.markForCheck();
+        // console.log('ticker ' + new Date().getTime())
       });
 
       // this.colorParties();
@@ -96,6 +110,7 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
     this.dataPromise.subscribe(data => {
       console.log("afterview promise complete")
       this.graph.initSimulation(this.options);
+      this.started = true;
     })
   }
 

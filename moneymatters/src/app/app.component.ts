@@ -17,6 +17,7 @@ export class AppComponent {
 	p;
 	fp;
 	bills;
+	// signalChange = 0;
 
 	nodes: Node[] = [];
   	links: Link[] = [];
@@ -35,7 +36,6 @@ export class AppComponent {
 		    this.reps.map((rep) => {rep.show = true;});
 		    console.log("app reps");
 			console.log(this.reps);
-			this.dataAvailable = true;
 
 			const N = this.reps.length,
 		      getIndex = number => number - 1;
@@ -98,6 +98,9 @@ export class AppComponent {
 	      //   this.reps[rep.id] = new Rep(data)
 	     //  // }
 		   	// this.reps = data.map(it => new Rep(...it))
+
+			this.dataAvailable = true;
+			this.p.done = true;
 		});
 		
 	}
@@ -106,12 +109,18 @@ export class AppComponent {
 		
   	}
 
-	applyFilters(this, filters){
+	applyFilters(this, filters){ 
 		console.log("applyfilters");
 		console.log(filters);
 		let party = filters.party == 'democrat' ? 'd' : 'r';
 		this.reps.map(rep => {rep.show = rep.party.toLowerCase() == party ? true : false;});
-		this.nodes.map(node => {node.active = node.party.toLowerCase() == party ? true : false;})
+	 	this.nodes.map(node => {
+	 		node.active = node.party.toLowerCase() == party ? true : false;
+	 	});
+
+  		this.nodes = this.nodes.slice(); //sends update to ngOnChanges
+
+
     	console.log(this.reps)
 	}
 }
