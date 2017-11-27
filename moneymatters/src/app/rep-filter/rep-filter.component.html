@@ -1,11 +1,18 @@
 <ul class="rep-filters">
   <li>
-    <button mat-raised-button class="rep-button" (click)="setActive($event)">Bill</button>
+    <ng2-dropdown>
+    <ng2-dropdown-button showCaret="False">
+      <button mat-raised-button class="rep-button" (click)="setActive($event)">Bill</button>
+    </ng2-dropdown-button>
+  <ng2-dropdown-menu>
+
+  </ng2-dropdown-menu>
+  </ng2-dropdown>
   </li>
   <li>
     <ng2-dropdown>
-        <ng2-dropdown-button showCaret="True">
-          <li><button mat-raised-button class="rep-button" (click)="setActive($event)">Money</button></li>
+        <ng2-dropdown-button showCaret="False">
+          <button mat-raised-button class="rep-button" (click)="setActive($event)">Money</button>
         </ng2-dropdown-button>
         <ng2-dropdown-menu>
             <ng2-menu-item preventClose="True">
@@ -20,12 +27,6 @@
         </ng2-dropdown-menu>
     </ng2-dropdown>
   </li>
-  <li>
-    <ng2-dropdown>
-      <ng2-dropdown-button>
-        <li><button mat-raised-button class="rep-button" (click)="setActive($event)">Party</button></li>
-      </ng2-dropdown-button>
-    </ng2-dropdown>
-  </li>
+  <li><button mat-raised-button class="rep-button" (click)="setActive($event)">Party</button></li>
 
 </ul>
