@@ -36,7 +36,7 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
   @Input('dataAvailable') dataAvailable = false;
 
   graph: ForceDirectedGraph;
-  private _options: { width, height } = { width: 600, height: 800 };
+  private _options: { width, height } = { width: 700, height: 800 };
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {

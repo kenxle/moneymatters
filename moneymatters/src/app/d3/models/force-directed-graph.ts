@@ -5,8 +5,11 @@ import * as d3 from 'd3';
 
 const FORCES = {
   LINKS: 1,
+  // LINKS: 1/20,
   COLLISION: 0.6,
+  // COLLISION: 1,
   CHARGE: -0.01 
+  // CHARGE: -0.1 
 }
 
 export class ForceDirectedGraph {

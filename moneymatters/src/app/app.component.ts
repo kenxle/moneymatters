@@ -32,16 +32,29 @@ export class AppComponent {
 			const N = this.reps.length,
 		      getIndex = number => number - 1;
 
+		let money_max = 0;
 		/** constructing the nodes array */
+		// let central_node = new Node("center");
+		// central_node.party = 'c';
+		// this.nodes.push(central_node);
 		this.reps.map(rep =>{
-		  let n = new Node(rep.first_name)
+		  // piggyback off this loop to collect the max of contributions
+		  if (rep.total_contributions > money_max) money_max = rep.total_contributions;
+		  let n = new Node(rep.first_name);
+		  n.last_name = rep.last_name;
 		  n.x = 0;
 		  n.y = 0;
 		  n.party = rep.party;
 		  n.active = rep.show;
 		  n.money = rep.total_contributions;
+		  
 		  this.nodes.push(n);
 		});
+		this.nodes.map(n =>{
+		  n.money_max = money_max;
+		});
+
+
 		
 		let dems = this.nodes.filter(n => n.party.toLowerCase() == 'd')
 		
@@ -49,12 +62,14 @@ export class AppComponent {
 			let rand = Math.floor(Math.random() * dems.length)
 			this.links.push(new Link(dems[i], dems[rand]));
 			this.links.push(new Link(dems[i], dems[i+1]));
+			// this.links.push(new Link(dems[i], central_node));
 		}
 		let repus = this.nodes.filter(n => n.party.toLowerCase() == 'r')
 		for (let i=0; i<repus.length-1; i++){
 			let rand = Math.floor(Math.random() * repus.length)
 			this.links.push(new Link(repus[i], repus[rand]));
 			this.links.push(new Link(repus[i], repus[i+1]));
+			// this.links.push(new Link(repus[i], central_node));
 		}
 		// for (let i = 0; i < N; i++) {
 		//   for (let m = i+1; m < N; m++) {

@@ -13,9 +13,16 @@ import { Node } from '../../../d3';
           [attr.r]="node.r">
       </svg:circle>
       <svg:text
+          dy = "-0.5em"
           class="node-name"
           [attr.font-size]="node.fontSize">
         {{node.id}}
+      </svg:text>
+      <svg:text
+          dy = "0.5em"
+          class="node-name"
+          [attr.font-size]="node.fontSize">
+        {{node.last_name}}
       </svg:text>
     </svg:g>
   `,
