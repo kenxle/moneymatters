@@ -120,6 +120,22 @@ export class AppComponent {
 
   		this.nodes = this.nodes.slice(); //sends update to ngOnChanges
 
+  		this.links = [];
+		let dems = this.nodes.filter(n => n.party.toLowerCase() == 'd')
+		
+		for (let i=0; i<dems.length-1; i++){
+			let rand = Math.floor(Math.random() * dems.length)
+			this.links.push(new Link(dems[i], dems[rand]));
+			this.links.push(new Link(dems[i], dems[i+1]));
+			// this.links.push(new Link(dems[i], central_node));
+		}
+		let repus = this.nodes.filter(n => n.party.toLowerCase() == 'r')
+		for (let i=0; i<repus.length-1; i++){
+			let rand = Math.floor(Math.random() * repus.length)
+			this.links.push(new Link(repus[i], repus[rand]));
+			this.links.push(new Link(repus[i], repus[i+1]));
+			// this.links.push(new Link(repus[i], central_node));
+		}
 
     	console.log(this.reps)
 	}

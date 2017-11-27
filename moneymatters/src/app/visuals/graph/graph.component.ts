@@ -56,11 +56,17 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
     console.log(changes);
     console.log("simulation running? " +this.started);
     if(this.started){
-      // if(changes.nodes){
-      //   this.graph.simulation.nodes.exit(changes.nodes.previousValue);
-      //   this.graph.enter(changes.nodes.currentValue)
-      // }
-      this.graph.initSimulation(this._options);
+      //will handle things like color updates, but not a new list of links
+      // this.graph.initSimulation(this._options); 
+
+      // looks like it might keep the nodes and add new links
+      // after the ticket stops, this just seems to show the final locations
+      this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this._links, this.options);
+      this.graph.initSimulation(this._options); 
+      this.graph.ticker.subscribe((d) => {
+        this.ref.markForCheck();
+        // console.log('ticker ' + new Date().getTime())
+      });
     }
     //   
     //   // console.log('prev value: ', name.previousValue);
