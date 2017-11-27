@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Output, Input, ViewEncapsulation } from '@angular/core';
 import { RepService } from '../rep/rep.service';
 import { EventEmitter } from '@angular/core';
 
@@ -9,6 +9,8 @@ import { EventEmitter } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class RepFilterComponent implements OnInit {
+  // @Input('filterPromise') filterPromise; 
+  @Input('bills_list') bills_list;
   @Output()
       filterChanged:EventEmitter<string> = new EventEmitter();
 

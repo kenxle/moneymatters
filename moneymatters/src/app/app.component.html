@@ -9,7 +9,8 @@
 
   <section class="rep-list">
     <div class="rep-filter">
-      <app-rep-filter (filterChanged)="applyFilters($event)"></app-rep-filter>
+      <app-rep-filter (filterChanged)="applyFilters($event)"
+          [bills_list]="bills"></app-rep-filter>
     </div>
     <app-rep-list [reps]="reps"></app-rep-list>
   </section>

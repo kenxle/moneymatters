@@ -15,12 +15,20 @@ export class AppComponent {
 	reps;
 	dataAvailable = false;
 	p;
+	fp;
+	bills;
 
 	nodes: Node[] = [];
   	links: Link[] = [];
 
 	constructor(private _dataService: DataService) {
-		
+
+
+		this.fp = this._dataService.getBillList();
+		this.fp.subscribe(data => {
+		    this.bills = data;
+		});
+
 		this.p = this._dataService.getMemberList('house');
 		this.p.subscribe(data => {
 		    this.reps = data;

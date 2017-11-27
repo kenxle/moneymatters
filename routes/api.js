@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 var rep_controller = require('../controllers/rep_controller.js');
+var api_controller = require('../controllers/api_controller.js');
 
 
 /* GET api listing. */
@@ -12,12 +13,24 @@ router.get('/', (req, res) => {
 
 router.get('/members/:chamber', rep_controller.list);
 
-router.get('/update/database', rep_controller.updateDatabase);
-router.get('/update/database/members', rep_controller.updateDatabaseMembers);
+router.get('/update/database', api_controller.updateDatabase);
+router.get('/update/database/members', api_controller.updateDatabaseMembers);
 
-router.get('/member/:crpid/interestcontributions', rep_controller.getInterestContributions);
+router.get('/member/:crpid/interestcontributions', api_controller.getInterestContributions);
 
-router.get('/members/:chamber/:session', rep_controller.listChamberSession);
+router.get('/members/:chamber/:session', api_controller.listChamberSession);
+
+router.get('/bill/:billId/position', api_controller.getBillPositions);
+router.get('/bills/:billId/position', api_controller.getBillPositions);
+router.get('/bills/:billId/positions', api_controller.getBillPositions);
+router.get('/bill/:billId/positions', api_controller.getBillPositions);
+router.get('/bills', api_controller.getBillList); 
+
+//////////////////////////////////////
+//////////////////////////////////////
+/* STUFF BELOW STILL NEEDS TO BE MIGRATED TO rep_controller.js */
+//////////////////////////////////////
+//////////////////////////////////////
 
 /*
 https://propublica.github.io/campaign-finance-api-docs/#get-a-specific-candidate
@@ -67,74 +80,10 @@ router.get('/bills/search/:str', (req, res) => {
       res.status(500).send(error)
     });
 });
-// Get all bills
-/*
-http://classic.maplight.org/services_open_api/map.bill_list_v1
-Arguments
 
-jurisdiction required enum
-us refers to the United States Congress.
 
-session required enum
-109 refers to the 109th session of the United States Congress (2005-2006). 110 refers to the 110th session of the United States Congress (2007-2008). 111 refers to the 111th session of the United States Congress (2009-2010).
 
-include_organizations optional boolean
-0 or 1, default 0. 1 includes supporting and opposing organizations. 0 includes a flag indicating the existence of organizations. Both include the last update time.
 
-has_organizations optional boolean
-0 or 1, default 1. 1 excludes bills without organizations. 0 includes all bills.
-*/
-router.get('/bills', (req, res) => {
-  // Get bills list from maplight api
-  // 
-    let url = billList({})
-    console.log("GET: " + url)
-    axios.get(url)
-    .then(bills => {
-      res.status(200).json(bills.data);
-    })
-    .catch(error => {
-      res.status(500).send(error)
-    });
-});
-
-/*
-https://maplight.org/data_guide/bill-positions-api-documentation/
-Arguments
-
-jurisdiction required enum
-us refers to the United States Congress.
-
-session required enum
-109 refers to the 109th session of the United States Congress (2005-2006). 110 refers to the 110th session of the United States Congress (2007-2008). 111 refers to the 111th session of the United States Congress (2009-2010).
-
-prefix required string
-Bill prefix. In US:
-h House Bill (i.e. H.R.)
-hr House Resolution (i.e. H.Res.)
-hj House Joint Resolution (i.e. H.J.Res.)
-hc House Concurrent Resolution (i.e. H.Con.Res.)
-s Senate Bill (i.e. S.)
-sr Senate Resolution (i.e. S.Res.)
-sj Senate Joint Resolution (i.e. S.J.Res.)
-sc Senate Concurrent Resolution (i.e. S.Con.Res.)
-
-number required string
-Number of the bill, without prefix.
-*/
-router.get('/bill/:billId/position', (req, res) => {
-  // Get a single bill position from maplight api
-  // 
-    let url = billPosition({billId: req.params.billId})
-    console.log("GET: " + url)
-    axios.get(url)
-    .then(bills => {
-      res.status(200).json(bills.data);
-    })
-    .catch(error => {
-      res.status(500).send(error)
-    });
-});
 
 /*
 Arguments
