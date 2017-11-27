@@ -12,7 +12,7 @@ import { DataService } from '../services/data.service';
 })
 
 export class RepListComponent {
- 
+
   // reps = REPS;
   @Input() reps;
 

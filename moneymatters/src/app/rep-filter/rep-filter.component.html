@@ -1,6 +1,6 @@
 <ul class="rep-filters">
   <li>
-    <ng2-dropdown (onShow)="filterOpened($event)" 
+    <ng2-dropdown (onShow)="filterOpened($event)"
                   (onHide)="filterClosed($event)"
                   (onItemClicked)="applyPartyFilter($event)">
 
@@ -16,18 +16,16 @@
             {{bill.topic}}}
           </ng2-menu-item>
       </ng2-dropdown-menu>
-      
+
     </ng2-dropdown>
   </li>
-
   <li>
     <ng2-dropdown id="moneyFilter"(onShow)="filterOpened($event)" (onHide)="filterClosed($event)">
-        
         <ng2-dropdown-button id="moneyFilterNGButton" showCaret="True">
           <li><button mat-raised-button class="rep-button" >Money</button></li>
         </ng2-dropdown-button>
-
         <ng2-dropdown-menu>
+
             <ng2-menu-item >
               <mat-slider #slider min="1" max="{{money_max}}" step="0.5" value="100"
               (change)="applyMoneyFilter($event)"></mat-slider> {{slider.value}}
@@ -45,9 +43,8 @@
 
     </ng2-dropdown>
   </li>
-  
   <li>
-    <ng2-dropdown (onShow)="filterOpened($event)" 
+    <ng2-dropdown (onShow)="filterOpened($event)"
                   (onHide)="filterClosed($event)"
                   (onItemClicked)="applyPartyFilter($event)">
 
@@ -65,8 +62,6 @@
             Republican
           </ng2-menu-item>
       </ng2-dropdown-menu>
-      
     </ng2-dropdown>
   </li>
-
 </ul>

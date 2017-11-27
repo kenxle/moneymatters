@@ -1,6 +1,6 @@
 import { Component, OnInit, 
-        Input, ViewEncapsulation, 
-        OnChanges, SimpleChange, 
+        Input, ViewEncapsulation,
+        OnChanges, SimpleChange,
         SimpleChanges } from '@angular/core';
 import * as d3 from 'd3';
 import { Rep } from '../rep/rep';
@@ -58,7 +58,7 @@ export class RepChartComponent implements OnInit, OnChanges {
 
   drawHouse (this, numnode, rad) {
     var _self = this;
-    
+
     var numNodes = numnode || 100;
     var radius = rad || 250;
     var nodes = this.createHouseNodes(numNodes, radius);
@@ -89,12 +89,12 @@ export class RepChartComponent implements OnInit, OnChanges {
           y = -1 * (localradius * Math.sin(angle)) + (height); // Calculate the y position of the element.
           party = (i % 2 === 0) ? "Dem" : "Rep";
 
-          nodes.push({'id': i, 
-                      'x': x, 
-                      'y': y, 
+          nodes.push({'id': i,
+                      'x': x,
+                      'y': y,
                       'party': this.reps[ind].party,
-                      'color':  this.reps[ind].show ? 
-                                this.reps[ind].party.toLowerCase() == "d" ? 
+                      'color':  this.reps[ind].show ?
+                                this.reps[ind].party.toLowerCase() == "d" ?
                                 "blue" : "red" : "black"
              });
 
@@ -158,7 +158,7 @@ export class RepChartComponent implements OnInit, OnChanges {
 
   constructor() { }
 
-  
+
 }
 
 
@@ -182,7 +182,7 @@ export class NodeVisualComponent {
 }
 
     // $(document).ready(function() {
-      
+
     //   // draw(40, 150);
     // });
     // ChartService.instantiate();
