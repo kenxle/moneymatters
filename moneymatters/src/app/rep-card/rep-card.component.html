@@ -1,4 +1,6 @@
-<mat-card class="rep-card">
+
+<mat-card *ngIf="rep.show" class="rep-card">
+
   <div class="rep-watermark {{rep.party | lowercase }}">{{ rep.party | firstLetter }}</div>
   <mat-card-title>
     <h2>{{rep.first_name}} {{rep.last_name}}</h2>

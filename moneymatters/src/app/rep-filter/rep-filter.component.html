@@ -1,32 +1,65 @@
 <ul class="rep-filters">
   <li>
-    <ng2-dropdown>
-    <ng2-dropdown-button showCaret="False">
-      <button mat-raised-button class="rep-button" (click)="setActive($event)">Bill</button>
-    </ng2-dropdown-button>
-  <ng2-dropdown-menu>
+    <ng2-dropdown (onShow)="filterOpened($event)"
+                  (onHide)="filterClosed($event)"
+                  (onItemClicked)="applyPartyFilter($event)">
 
-  </ng2-dropdown-menu>
-  </ng2-dropdown>
+      <ng2-dropdown-button>
+        <li>
+          <button mat-raised-button class="rep-button" (click)="setActive($event)">Bills</button>
+        </li>
+      </ng2-dropdown-button>
+
+      <ng2-dropdown-menu>
+        <app-rep-card *ngFor="let rep of reps | paginate: { itemsPerPage: 30, currentPage: p }" [rep]="rep"></app-rep-card>
+          <ng2-menu-item *ngFor="let bill of bills_list" [value]="bill.topic">
+            {{bill.topic}}}
+          </ng2-menu-item>
+      </ng2-dropdown-menu>
+
+    </ng2-dropdown>
   </li>
   <li>
-    <ng2-dropdown>
-        <ng2-dropdown-button showCaret="False">
-          <button mat-raised-button class="rep-button" (click)="setActive($event)">Money</button>
+    <ng2-dropdown id="moneyFilter"(onShow)="filterOpened($event)" (onHide)="filterClosed($event)">
+        <ng2-dropdown-button id="moneyFilterNGButton" showCaret="True">
+          <li><button mat-raised-button class="rep-button" >Money</button></li>
         </ng2-dropdown-button>
         <ng2-dropdown-menu>
             <ng2-menu-item preventClose="True">
-              <mat-slider min="1" max="5" step="0.5" value="1.5"></mat-slider>
+              <mat-slider (onChange)="applyFilter($event)" min="1" max="50000000" step="0.5" value="50000000"></mat-slider>
             </ng2-menu-item>
 
             <div class='ng2-menu-divider'></div>
+
               <ul class="footer-menu">
-                <li><button class="rep-button">Cancel</button></li>
-                <li><button class="rep-button">Apply</button></li>
+                <li><button class="rep-button" (click)="cancelFilter($event)">Cancel</button></li>
+                <li>
+                    <button class="rep-button" (click)="applyFilter($event)">Apply</button>
+                </li>
               </ul>
         </ng2-dropdown-menu>
+
     </ng2-dropdown>
   </li>
-  <li><button mat-raised-button class="rep-button" (click)="setActive($event)">Party</button></li>
+  <li>
+    <ng2-dropdown (onShow)="filterOpened($event)"
+                  (onHide)="filterClosed($event)"
+                  (onItemClicked)="applyPartyFilter($event)">
 
+      <ng2-dropdown-button>
+        <li>
+          <button mat-raised-button class="rep-button" (click)="setActive($event)">Party</button>
+        </li>
+      </ng2-dropdown-button>
+
+      <ng2-dropdown-menu>
+          <ng2-menu-item value="democrat">
+            Democrat
+          </ng2-menu-item>
+          <ng2-menu-item value="republican">
+            Republican
+          </ng2-menu-item>
+      </ng2-dropdown-menu>
+    </ng2-dropdown>
+  </li>
 </ul>
