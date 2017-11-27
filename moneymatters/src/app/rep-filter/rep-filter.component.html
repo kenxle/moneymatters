@@ -11,7 +11,6 @@
       </ng2-dropdown-button>
 
       <ng2-dropdown-menu>
-        <app-rep-card *ngFor="let rep of reps | paginate: { itemsPerPage: 30, currentPage: p }" [rep]="rep"></app-rep-card>
           <ng2-menu-item *ngFor="let bill of bills_list" [value]="bill.topic">
             {{bill.topic}}}
           </ng2-menu-item>
