@@ -14,10 +14,14 @@
     <app-rep-list [reps]="reps"></app-rep-list>
   </section>
   <section class="rep-chart">
-    <app-rep-chart [reps]="reps" 
-                  [dataAvailable]="dataAvailable">
+
+    <graph [nodes]="nodes" [links]="links" [dataAvailable]="dataAvailable"
+    [dataPromise]="p"></graph>
+
+     <!-- <app-rep-chart [reps]="reps" 
+                  [dataAvailable]="dataAvailable">  -->
                       
-    </app-rep-chart>
+    <!-- </app-rep-chart> -->
   </section>
 
 </article>

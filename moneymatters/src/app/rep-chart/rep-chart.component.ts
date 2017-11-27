@@ -18,7 +18,7 @@ import * as $ from 'jquery';
   providers: [DataService]
 })
 
-export class RepChartComponent implements OnInit {
+export class RepChartComponent implements OnInit, OnChanges {
   svg;
   nodes;
   houseRows = [60, 58, 53, 49, 45, 41, 37, 33, 30, 28];
@@ -38,6 +38,9 @@ export class RepChartComponent implements OnInit {
 
   @Input() reps;
 
+  ngOnInit() {
+  }
+
    /* ENTRY POINT */
   ngOnChanges(changes: SimpleChanges) {
     console.log("those *simple* changes...");
@@ -53,7 +56,7 @@ export class RepChartComponent implements OnInit {
      }
   }
 
-  drawHouse = function(this, numnode, rad) {
+  drawHouse (this, numnode, rad) {
     var _self = this;
     
     var numNodes = numnode || 100;
@@ -154,12 +157,7 @@ export class RepChartComponent implements OnInit {
   }
 
   constructor() { }
-  ngOnInit() {
-    // this.drawHouse(houseRows, 300);
 
-    
-
-  }
   
 }
 

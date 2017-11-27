@@ -3,6 +3,13 @@ import {HttpClientModule} from '@angular/common/http';
 import { Http, Response } from '@angular/http';
 import { NgModule } from '@angular/core';
 import * as d3 from 'd3';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+
+import { D3Service, D3_DIRECTIVES } from './d3';
+import { GraphComponent } from './visuals/graph/graph.component';
+import { SHARED_VISUALS } from './visuals/shared';
+
 import {NgxPaginationModule} from 'ngx-pagination';
 import { Ng2DropdownModule } from 'ng2-material-dropdown';
 import {MatButtonModule,
@@ -37,6 +44,9 @@ import { BillComponent } from './bill/bill.component';
     BillListComponent,
     RepFilterComponent,
     FirstLetter,
+    GraphComponent,
+    ...SHARED_VISUALS,
+    ...D3_DIRECTIVES,
     BillComponent
   ],
   imports: [
@@ -49,9 +59,11 @@ import { BillComponent } from './bill/bill.component';
     MatCardModule,
     MatExpansionModule,
     MatSliderModule,
+    FormsModule,
+    HttpModule,
     MatPaginatorModule
   ],
   bootstrap: [AppComponent],
-  providers: [DataService]
+  providers: [DataService, D3Service]
 })
 export class AppModule { }
