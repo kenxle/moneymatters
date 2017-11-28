@@ -79,7 +79,7 @@ exports.list = (req, res, next) => {
     	next(e);
     });
 }
-
+  
 /**
  * Delete user.
  * @returns {User}

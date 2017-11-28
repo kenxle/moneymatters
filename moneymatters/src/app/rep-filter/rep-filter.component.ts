@@ -9,7 +9,7 @@ import { EventEmitter } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class RepFilterComponent implements OnInit {
-  // @Input('filterPromise') filterPromise; 
+  // @Input('filterPromise') filterPromise;
   @Input('bills_list') bills_list;
   @Input('money_max') money_max;
   @Output()
@@ -20,37 +20,24 @@ export class RepFilterComponent implements OnInit {
   }
 
   callParent(filters) {
-    console.log("call parent")
     // this.filterChanged.next('somePhone');
     this.filterChanged.next(filters);
   }
 
   filterOpened($event){
-    console.log("filter opened: ");
-    console.log($event);
   }
   filterClosed($event){
-    console.log("filter closed: ");
-    console.log($event);
   }
 
   // could probably have a generic way to do this
   applyFilter($event){
-    console.log("apply filter: ");
-    console.log($event);
   }
 
   applyPartyFilter($event){
-
-    console.log("apply party filter: " + $event.value);
-    console.log($event);
     this.callParent({party: $event.value})
   }
 
   applyMoneyFilter($event){
-
-    console.log("apply money filter: " + $event.value);
-    console.log($event);
     this.callParent({money: $event.value})
   }
 

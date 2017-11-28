@@ -1,8 +1,8 @@
-import { Component, Input, 
-  ChangeDetectorRef, HostListener, 
-  ChangeDetectionStrategy, OnInit, 
-  AfterViewInit, OnChanges, 
-  SimpleChange, 
+import { Component, Input,
+  ChangeDetectorRef, HostListener,
+  ChangeDetectionStrategy, OnInit,
+  AfterViewInit, OnChanges,
+  SimpleChange,
         SimpleChanges  } from '@angular/core';
 import { D3Service, ForceDirectedGraph, Node } from '../../d3';
 
@@ -33,7 +33,7 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
       // if(this.started){
       //   this.graph.initSimulation(this.options);
       // }
-      // this.graph.initSimulation(this._options) 
+      // this.graph.initSimulation(this._options)
   }
   started: boolean = false;
   @Input('dataPromise') dataPromise;
@@ -41,7 +41,7 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
   @Input('dataAvailable') dataAvailable = false;
 
   graph: ForceDirectedGraph;
-  private _options: { width, height } = { width: 700, height: 800 };
+  private _options: { width, height } = { width: 650, height: 800 };
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -50,31 +50,28 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
 
 
   constructor(private d3Service: D3Service, private ref: ChangeDetectorRef) {}
-  
+
   ngOnChanges(changes: SimpleChanges) {
-    console.log("graph *simple* changes...");
-    console.log(changes);
-    console.log("simulation running? " +this.started);
     if(this.started){
       //will handle things like color updates, but not a new list of links
-      // this.graph.initSimulation(this._options); 
+      // this.graph.initSimulation(this._options);
 
       // re-init the entire thing. elements that are the same will stay where they are
-      // so nodes will keep their position if links are changed, and then adjust to the 
+      // so nodes will keep their position if links are changed, and then adjust to the
       // new links
       this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this._links, this.options);
-      this.graph.initSimulation(this.options); 
+      this.graph.initSimulation(this.options);
       this.graph.ticker.subscribe((d) => {
         this.ref.markForCheck();
         // console.log('ticker ' + new Date().getTime())
       });
     }
-    //   
+    //
     //   // console.log('prev value: ', name.previousValue);
     //   // console.log('got name: ', name.currentValue);
     //   this.dataAvailable = changes.dataAvailable.currentValue
     //   // this.reps = changes.reps.currentValue
-    //   if(changes.dataAvailable.currentValue == true 
+    //   if(changes.dataAvailable.currentValue == true
     //       && changes.dataAvailable.previousValue == false){
     //     /** Receiving an initialized simulated graph from our custom d3 service */
     //     this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this.links, this.options);
@@ -110,7 +107,7 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
 
       // this.colorParties();
     })
-     
+
   }
 
   ngAfterViewInit() {

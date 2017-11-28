@@ -8,8 +8,8 @@ const FORCES = {
   // LINKS: 1/20,
   COLLISION: 0.6,
   // COLLISION: 1,
-  CHARGE: -0.01 
-  // CHARGE: -0.1 
+  CHARGE: -0.01
+  // CHARGE: -0.1
 }
 
 export class ForceDirectedGraph {
@@ -50,7 +50,6 @@ export class ForceDirectedGraph {
   }
 
   initLinks() {
-    console.log('initLinks');
     if (!this.simulation) {
       throw new Error('simulation was not initialized yet');
     }
