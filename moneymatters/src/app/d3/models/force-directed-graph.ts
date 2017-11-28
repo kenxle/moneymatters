@@ -4,11 +4,11 @@ import { Node } from './node';
 import * as d3 from 'd3';
 
 const FORCES = {
-  LINKS: 1, 
+  LINKS: 1,
   // LINKS: 1/20,
   COLLISION: 0.6,
   // COLLISION: 1,
-  CHARGE: -0.01
+  CHARGE: -0.1
   // CHARGE: -0.1
 }
 
@@ -78,7 +78,7 @@ export class ForceDirectedGraph {
         .force('collide',
           d3.forceCollide()
             .strength(FORCES.COLLISION)
-            .radius(d => d['r'] + 5).iterations(2)
+            .radius(d => d['r'] + 5).iterations(1)
         );
 
       // Connecting the d3 ticker to an angular event emitter

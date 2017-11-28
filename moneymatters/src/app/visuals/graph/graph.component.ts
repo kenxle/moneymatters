@@ -11,7 +11,7 @@ import { D3Service, ForceDirectedGraph, Node } from '../../d3';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <svg #svg [attr.width]="options.width" [attr.height]="options.height">
-      <g [zoomableOf]="svg">
+      <g>
         <g [linkVisual]="link" *ngFor="let link of links"></g>
         <g [nodeVisual]="node" *ngFor="let node of nodes"
             [draggableNode]="node" [draggableInGraph]="graph"></g>
@@ -91,10 +91,8 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
 
   ngOnInit() {
     this.dataPromise.subscribe(data => {
-      console.log("oninit promise complete")
       /** Receiving an initialized simulated graph from our custom d3 service */
       this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this._links, this.options);
-
       /** Binding change detection check on each tick
        * This along with an onPush change detection strategy should enforce checking only when relevant!
        * This improves scripting computation duration in a couple of tests I've made, consistently.
@@ -102,7 +100,6 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
        */
       this.graph.ticker.subscribe((d) => {
         this.ref.markForCheck();
-        // console.log('ticker ' + new Date().getTime())
       });
 
       // this.colorParties();
@@ -112,7 +109,6 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
 
   ngAfterViewInit() {
     this.dataPromise.subscribe(data => {
-      console.log("afterview promise complete")
       this.graph.initSimulation(this.options);
       this.started = true;
     })
