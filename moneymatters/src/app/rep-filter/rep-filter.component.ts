@@ -49,7 +49,8 @@ export class RepFilterComponent implements OnInit {
 
   }
 
-  setActive($event, filter) {
+  setActive($event/*, filter*/) {
+    // this.callParent();
     let classList: string[] = $event.target.className.split(/\s+/);
     if(classList.indexOf("active") === -1) {
       $event.target.classList.add("active");

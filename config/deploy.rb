@@ -18,9 +18,7 @@ namespace :deploy do
 
   # before 'deploy:start', 'deploy:npm_install'
 
-  before 'deploy:npm_install', 'deploy:ng_compile'
-  before 'deploy:restart', 'deploy:npm_install'
-  after 'deploy:publishing', 'deploy:restart'
+
   # before 'deploy:default', 'deploy:restart'
 
   # after 'deploy:setup', 'deploy:node_additional_setup'
@@ -47,13 +45,14 @@ namespace :deploy do
 
   task :npm_install do
     on roles :all do
-      execute "cd #{current_path}/moneymatters && npm install"
+      execute "cd #{current_path} && npm install"
     end
   end
 
+
   task :ng_compile do
     on roles :all do
-      execute "cd #{current_path}/moneymatters && ng build --prod --base-href='dist'"
+      execute "cd #{current_path}/moneymatters && npm install && ng build --prod --base-href='dist'"
     end
   end
 
@@ -62,7 +61,9 @@ namespace :deploy do
       execute "cd #{current_path}/moneymatters && npm update"
     end
   end
-
+  # before 'deploy:npm_install', 'deploy:ng_compile'
+  before 'deploy:restart', 'deploy:npm_install'
+  after 'deploy:publishing', 'deploy:restart'
 
 end
 

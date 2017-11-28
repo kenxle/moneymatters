@@ -9,6 +9,8 @@ import { HttpModule } from '@angular/http';
 import { D3Service, D3_DIRECTIVES } from './d3';
 import { GraphComponent } from './visuals/graph/graph.component';
 import { SHARED_VISUALS } from './visuals/shared';
+import {NodeVisualComponent} from './visuals/shared/node-visual/node-visual.component'
+import {LinkVisualComponent} from './visuals/shared/link-visual/link-visual.component'
 
 import {NgxPaginationModule} from 'ngx-pagination';
 import { Ng2DropdownModule } from 'ng2-material-dropdown';
@@ -47,6 +49,8 @@ import { BillComponent } from './bill/bill.component';
     FirstLetter,
     GraphComponent,
     ...SHARED_VISUALS,
+    // NodeVisualComponent,
+    // LinkVisualComponent,
     ...D3_DIRECTIVES,
     BillComponent
   ],

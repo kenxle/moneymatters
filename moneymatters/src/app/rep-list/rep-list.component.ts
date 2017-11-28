@@ -12,7 +12,7 @@ import { DataService } from '../services/data.service';
 })
 
 export class RepListComponent {
-
+  @Input() p; // pagination page
   // reps = REPS;
   @Input() reps;
 
