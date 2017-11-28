@@ -1,28 +1,3 @@
-.mat-menu-panel {
-  padding: 1rem;
-  background-color: #fff;
-  h3, p {
-    margin-bottom: 1rem;
-  }
-  p {
-    color: #ababab;
-  }
-  .mat-slider {
-    margin: auto;
-    width: 100%;
-  }
-}
-.mat-menu-item {
-  color: #343434;
-}
-
-.rep-filters {
-  display: flex;
-  flex-flow: row wrap;
-  list-style-type: none;
-  margin: 1rem auto;
-}
-
 .rep-button {
   padding: 0.5rem 2rem;
   font-size: 1rem;
@@ -39,4 +14,8 @@
     color: #fff;
     background-color: #303030;
   }
+}
+
+.rep-filter {
+  height: 60px;
 }

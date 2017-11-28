@@ -13,31 +13,6 @@
         {{bill.topic}}}
       </button>
     </mat-menu>
-  </li>
-  <li>
-    <button id="moneyFilter" id="moneyFilterNGButton" class="rep-button"
-            (onShow)="filterOpened($event)"
-            (onHide)="filterClosed($event)"
-            (onItemClicked)="applyMoneyFilter($event)"
-            (click)="setActive($event)"
-            [matMenuTriggerFor]="moneyMenu">
-            Money
-    </button>
-    <mat-menu #moneyMenu="matMenu" yPosition="below" [overlapTrigger]="false">
-      <h3>Money</h3>
-      <p style="text-align: center; font-family: 'Helvetica', sans-serif;"><small>{{slider.value | currency}} - {{money_max | currency }}</small></p>
-      <mat-slider #slider min="1" max="{{money_max}}" step="0.5" value="100"
-      (change)="applyMoneyFilter($event)"></mat-slider>
-    </mat-menu>
-  </li>
-  <li>
-    <button id="partyButton"
-            class="rep-button"
-            (onShow)="filterOpened($event)"
-            (onHide)="filterClosed($event)"
-            (onItemClicked)="applyPartyFilter($event)"
-            (click)="setActive($event)">
-            Party
-    </button>
+    <p></p>
   </li>
 </ul>

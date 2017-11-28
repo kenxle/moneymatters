@@ -7,7 +7,7 @@
 </header>
 <article class="app-container">
 
-  <section class="rep-list">
+  <section class="mm-left">
     <div class="rep-filter">
       <app-rep-filter (filterChanged)="applyFilters($event)"
           [bills_list]="bills"
@@ -15,8 +15,7 @@
     </div>
     <app-rep-list [reps]="reps"></app-rep-list>
   </section>
-  <section class="rep-chart">
-
+  <section class="mm-right rep-chart">
     <graph [nodes]="nodes" [links]="links" [dataAvailable]="dataAvailable"
     [dataPromise]="p"></graph>
 
