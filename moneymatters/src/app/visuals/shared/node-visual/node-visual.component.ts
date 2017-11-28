@@ -16,13 +16,13 @@ import { Node } from '../../../d3';
           dy = "-0.5em"
           class="node-name"
           [attr.font-size]="node.fontSize">
-        {{node.first_name}}
+        {{node.r > 15 ? node.first_name : ""}}
       </svg:text>
       <svg:text
           dy = "0.5em"
           class="node-name"
           [attr.font-size]="node.fontSize">
-        {{node.last_name}}
+        {{node.r > 15 ? node.last_name : " "}}
       </svg:text>
     </svg:g>
   `,
