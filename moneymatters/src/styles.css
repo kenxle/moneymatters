@@ -1,2 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/purple-green.css";
+
+p {
+  font-family: 'Helvetica', sans-serif;
+}
+
+.mat-accent .mat-slider-thumb {
+  color: #343434 !important;
+  &:hover {
+    color: #343434 !important;
+  }
+}
+.mat-slider-track-background {
+  background-color: #00CE89;
+  &:hover {
+    color: #00CE89;
+  }
+}

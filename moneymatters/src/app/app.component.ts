@@ -39,8 +39,6 @@ export class AppComponent {
 			this.origReps = data;
 		    this.reps = data;
 		    this.reps.map((rep) => {rep.show = true;});
-		    console.log("app reps");
-			console.log(this.reps);
 
 			const N = this.reps.length,
 		      getIndex = number => number - 1;
@@ -63,7 +61,7 @@ export class AppComponent {
 		  n.party = rep.party;
 		  n.active = rep.show;
 		  n.money = rep.total_contributions;
-		  
+
 		  this.nodes.push(n);
 		  ri++;
 		});
@@ -72,9 +70,9 @@ export class AppComponent {
 		});
 		this.max_money_filter = money_max;
 		this.origNodes = this.nodes;
-		
+
 		let dems = this.nodes.filter(n => n.party.toLowerCase() == 'd')
-		
+
 		for (let i=0; i<dems.length-1; i++){
 			let rand = Math.floor(Math.random() * dems.length)
 			this.links.push(new Link(dems[i], dems[rand]));
@@ -93,14 +91,13 @@ export class AppComponent {
 		//   for (let m = i+1; m < N; m++) {
 		//   	if(this.nodes[i].party == this.nodes[m].party){
 
-		//     * connecting the nodes before starting the simulation 
+		//     * connecting the nodes before starting the simulation
 		//     this.links.push(new Link(this.nodes[i], this.nodes[m]));
 		//   	}
-		    
+
 		//   }
 		// }
-		console.log(this.links.length)
-		
+
 // console.log("data" +JSON.stringify(data))
 	      // console.log("app data")
 	      // console.log(data)
@@ -112,16 +109,14 @@ export class AppComponent {
 			this.dataAvailable = true;
 			this.p.done = true;
 		});
-		
+
 	}
 
     ngOnInit() {
-		
+
   	}
 
-	applyFilters(this, filters){ 
-		console.log("applyfilters");
-		console.log(filters);
+	applyFilters(this, filters){
 		// the party filter
 		if(filters.party){
 			let party = filters.party == 'democrat' ? 'd' : 'r';
@@ -134,10 +129,8 @@ export class AppComponent {
 
 	  		// this.linkScramble();
 
-	    	console.log(this.reps)
     	}
     	if(filters.money || filters.money == 0){
-    		console.log('app updating money filter to ' + filters.money)
     		//always filtering on origReps isn't the right way to do this, but it will let me check if this works
     		this.reps = this.origReps.filter(rep => rep.total_contributions > filters.money);
     		this.nodes = this.origNodes.filter(node => node.money > filters.money)
@@ -146,10 +139,10 @@ export class AppComponent {
 	}
 
 	linkScramble(this){
-		// demo code that scrambles the links every time. used to check if the graph is working. 
+		// demo code that scrambles the links every time. used to check if the graph is working.
   		this.links = [];
 		let dems = this.nodes.filter(n => n.party.toLowerCase() == 'd')
-		
+
 		for (let i=0; i<dems.length-1; i++){
 			let rand = Math.floor(Math.random() * dems.length)
 			this.links.push(new Link(dems[i], dems[rand]));

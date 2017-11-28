@@ -15,6 +15,7 @@ import { Ng2DropdownModule } from 'ng2-material-dropdown';
 import {MatButtonModule,
         MatCardModule,
         MatExpansionModule,
+        MatMenuModule,
         MatSliderModule,
         MatPaginatorModule
         } from '@angular/material';
@@ -58,6 +59,7 @@ import { BillComponent } from './bill/bill.component';
     MatButtonModule,
     MatCardModule,
     MatExpansionModule,
+    MatMenuModule,
     MatSliderModule,
     FormsModule,
     HttpModule,

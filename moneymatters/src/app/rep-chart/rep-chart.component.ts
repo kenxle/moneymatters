@@ -1,4 +1,4 @@
-import { Component, OnInit, 
+import { Component, OnInit,
         Input, ViewEncapsulation,
         OnChanges, SimpleChange,
         SimpleChanges } from '@angular/core';
@@ -58,7 +58,6 @@ export class RepChartComponent implements OnInit, OnChanges {
 
   drawHouse (this, numnode, rad) {
     var _self = this;
-
     var numNodes = numnode || 100;
     var radius = rad || 250;
     var nodes = this.createHouseNodes(numNodes, radius);
@@ -87,7 +86,6 @@ export class RepChartComponent implements OnInit, OnChanges {
           // For a semicircle, we would use (i / numNodes) * Math.PI.
           x = -1 * (localradius * Math.cos(angle)) + (15 * j) + (width); // Calculate the x position of the element.
           y = -1 * (localradius * Math.sin(angle)) + (height); // Calculate the y position of the element.
-          party = (i % 2 === 0) ? "Dem" : "Rep";
 
           nodes.push({'id': i,
                       'x': x,
@@ -95,7 +93,7 @@ export class RepChartComponent implements OnInit, OnChanges {
                       'party': this.reps[ind].party,
                       'color':  this.reps[ind].show ?
                                 this.reps[ind].party.toLowerCase() == "d" ?
-                                "blue" : "red" : "black"
+                                "blue" : "red" : "grey"
              });
 
           ind++;

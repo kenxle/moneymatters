@@ -13,11 +13,10 @@ export class BillListComponent implements OnInit {
 
   constructor(private _billListService: DataService) { }
 
-    
+
   ngOnInit() {
    this._billListService.getBillList().subscribe(data => {
    	this.bills = data['bills']
-   	console.log(this.bills)
    	// console.log(data)
    });
   }

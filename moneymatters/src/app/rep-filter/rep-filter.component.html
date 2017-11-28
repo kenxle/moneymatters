@@ -1,67 +1,43 @@
 <ul class="rep-filters">
   <li>
-    <ng2-dropdown (onShow)="filterOpened($event)"
-                  (onHide)="filterClosed($event)"
-                  (onItemClicked)="applyPartyFilter($event)">
-
-      <ng2-dropdown-button>
-        <li>
-          <button mat-raised-button class="rep-button" (click)="setActive($event)">Bills</button>
-        </li>
-      </ng2-dropdown-button>
-
-      <ng2-dropdown-menu>
-        <app-rep-card *ngFor="let rep of reps | paginate: { itemsPerPage: 30, currentPage: p }" [rep]="rep"></app-rep-card>
-          <ng2-menu-item *ngFor="let bill of bills_list" [value]="bill.topic">
-            {{bill.topic}}}
-          </ng2-menu-item>
-      </ng2-dropdown-menu>
-
-    </ng2-dropdown>
+    <button id="buttonFilter buttonFilterNGButton" class="rep-button"
+            (onShow)="filterOpened($event)"
+            (onHide)="filterClosed($event)"
+            (onItemClicked)="applyPartyFilter($event)"
+            (click)="setActive($event)"
+            [matMenuTriggerFor]="billMenu">
+            Bill
+    </button>
+    <mat-menu #billMenu="matMenu" yPosition="below" [overlapTrigger]="false">
+      <button mat-menu-item *ngFor="let bill of bills_list" [value]="bill.topic">
+        {{bill.topic}}}
+      </button>
+    </mat-menu>
   </li>
   <li>
-    <ng2-dropdown id="moneyFilter"(onShow)="filterOpened($event)" (onHide)="filterClosed($event)">
-        <ng2-dropdown-button id="moneyFilterNGButton" showCaret="True">
-          <li><button mat-raised-button class="rep-button" >Money</button></li>
-        </ng2-dropdown-button>
-        <ng2-dropdown-menu>
-
-            <ng2-menu-item >
-              <mat-slider #slider min="1" max="{{money_max}}" step="0.5" value="100"
-              (change)="applyMoneyFilter($event)"></mat-slider> {{slider.value}}
-            </ng2-menu-item>
-
-            <!-- <div class='ng2-menu-divider'></div> -->
-
-              <!-- <ul class="footer-menu">
-                <li><button class="rep-button" (click)="cancelFilter($event)">Cancel</button></li>
-                <li>
-                    <button class="rep-button" (click)="applyMoneyFilter($event)">Apply</button>
-                </li>
-              </ul> -->
-        </ng2-dropdown-menu>
-
-    </ng2-dropdown>
+    <button id="moneyFilter" id="moneyFilterNGButton" class="rep-button"
+            (onShow)="filterOpened($event)"
+            (onHide)="filterClosed($event)"
+            (onItemClicked)="applyMoneyFilter($event)"
+            (click)="setActive($event)"
+            [matMenuTriggerFor]="moneyMenu">
+            Money
+    </button>
+    <mat-menu #moneyMenu="matMenu" yPosition="below" [overlapTrigger]="false">
+      <h3>Money</h3>
+      <p style="text-align: center; font-family: 'Helvetica', sans-serif;"><small>{{slider.value | currency}} - {{money_max | currency }}</small></p>
+      <mat-slider #slider min="1" max="{{money_max}}" step="0.5" value="100"
+      (change)="applyMoneyFilter($event)"></mat-slider>
+    </mat-menu>
   </li>
   <li>
-    <ng2-dropdown (onShow)="filterOpened($event)"
-                  (onHide)="filterClosed($event)"
-                  (onItemClicked)="applyPartyFilter($event)">
-
-      <ng2-dropdown-button>
-        <li>
-          <button mat-raised-button class="rep-button" (click)="setActive($event)">Party</button>
-        </li>
-      </ng2-dropdown-button>
-
-      <ng2-dropdown-menu>
-          <ng2-menu-item value="democrat">
-            Democrat
-          </ng2-menu-item>
-          <ng2-menu-item value="republican">
-            Republican
-          </ng2-menu-item>
-      </ng2-dropdown-menu>
-    </ng2-dropdown>
+    <button id="partyButton"
+            class="rep-button"
+            (onShow)="filterOpened($event)"
+            (onHide)="filterClosed($event)"
+            (onItemClicked)="applyPartyFilter($event)"
+            (click)="setActive($event)">
+            Party
+    </button>
   </li>
 </ul>
