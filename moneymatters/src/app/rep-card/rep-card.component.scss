@@ -39,3 +39,10 @@
     }
   }
 }
+
+
+@media screen and (max-width: 800px) {
+  .mat-card {
+    width: 150px;
+  }
+}
