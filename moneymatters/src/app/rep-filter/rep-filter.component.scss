@@ -1,3 +1,17 @@
+mat-select {
+  padding: 0.5rem 2rem;
+  border: 1px solid #979797;
+  border-radius: 3px;
+  width: 300px !important;
+}
+max-select-value {
+  color: #303030 !important;
+}
+p {
+  font-family: 'Helvetica', sans-serif;
+  padding: 1rem;
+}
+
 .rep-button {
   padding: 0.5rem 2rem;
   font-size: 1rem;
@@ -5,7 +19,6 @@
   color: #303030;
   border: 1px solid #979797;
   border-radius: 3px;
-  transition
   &:hover {
     background-color: #666;
     color: #fff;

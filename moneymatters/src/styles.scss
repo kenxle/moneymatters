@@ -1,0 +1,18 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+/* You can add global styles to this file, and also import other style files */
+h1, h2, h3, h4, h5, h6, p {
+  font-family: 'Helvetica', sans-serif;
+}
+
+.mat-accent .mat-slider-thumb {
+  color: #343434 !important;
+  &:hover {
+    color: #343434 !important;
+  }
+}
+.mat-slider-track-background {
+  background-color: #00CE89;
+  &:hover {
+    color: #00CE89;
+  }
+}

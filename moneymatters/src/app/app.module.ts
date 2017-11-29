@@ -18,6 +18,7 @@ import {MatButtonModule,
         MatCardModule,
         MatExpansionModule,
         MatMenuModule,
+        MatSelectModule,
         MatSliderModule,
         MatPaginatorModule
         } from '@angular/material';
@@ -64,6 +65,7 @@ import { BillComponent } from './bill/bill.component';
     MatCardModule,
     MatExpansionModule,
     MatMenuModule,
+    MatSelectModule,
     MatSliderModule,
     FormsModule,
     HttpModule,

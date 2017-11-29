@@ -1,18 +1,13 @@
 <ul class="rep-filters">
   <li>
-    <button id="buttonFilter buttonFilterNGButton" class="rep-button"
-            (onShow)="filterOpened($event)"
-            (onHide)="filterClosed($event)"
-            (onItemClicked)="applyPartyFilter($event)"
-            (click)="setActive($event)"
-            [matMenuTriggerFor]="billMenu">
-            Bill
-    </button>
-    <mat-menu #billMenu="matMenu" yPosition="below" [overlapTrigger]="false">
-      <button mat-menu-item *ngFor="let bill of bills_list" [value]="bill.topic">
-        {{bill.topic}}}
-      </button>
-    </mat-menu>
-    <p></p>
+    <p>Bill: {{selected}}
+      <mat-form-field>
+        <mat-select [(value)]="selected">
+          <mat-option *ngFor="let bill of bills_list" value="{{bill.topic}}">
+            {{bill.topic}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
   </li>
 </ul>

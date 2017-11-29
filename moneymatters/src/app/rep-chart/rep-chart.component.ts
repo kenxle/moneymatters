@@ -22,7 +22,6 @@ export class RepChartComponent implements OnInit, OnChanges {
   svg;
   nodes;
   houseRows = [60, 58, 53, 49, 45, 41, 37, 33, 30, 28];
-
   @Input('dataAvailable')
   dataAvailable = false;
   // @Input('dataAvailable') set dataAvailable(value: boolean) {
@@ -103,9 +102,10 @@ export class RepChartComponent implements OnInit, OnChanges {
     }
 
   createSvg(this, radius, callback) {
+    let svgWidth = $(".mm-right").width();
     d3.selectAll('svg').remove();
     this.svg = d3.select('#canvas').append('svg:svg')
-      .attr('width', 650)
+      .attr('width', svgWidth)
       .attr('height', 500);
     callback(this.svg);
   }

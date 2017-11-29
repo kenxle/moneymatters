@@ -8,7 +8,7 @@ import APP_CONFIG from './app.config';
   selector: 'app-root',
   templateUrl: './app.component.html',
   providers: [DataService],
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
 	title = 'app';
@@ -21,6 +21,7 @@ export class AppComponent {
 	fp;
 	bills;
 	max_money_filter;
+  selectedBill;
 	// signalChange = 0;
 
 	nodes: Node[] = [];
@@ -86,7 +87,7 @@ export class AppComponent {
 			this.links.push(new Link(repus[i], repus[i+1]));
 			// this.links.push(new Link(repus[i], central_node));
 		}
-		this.origLinks = this.links
+		this.origLinks = this.links;
 		// for (let i = 0; i < N; i++) {
 		//   for (let m = i+1; m < N; m++) {
 		//   	if(this.nodes[i].party == this.nodes[m].party){
@@ -112,49 +113,11 @@ export class AppComponent {
 
 	}
 
-    ngOnInit() {
+  ngOnInit() {
 
-  	}
+  }
 
 	applyFilters(this, filters){
-		// the party filter
-		if(filters.party){
-			let party = filters.party == 'democrat' ? 'd' : 'r';
-			this.reps.map(rep => {rep.show = rep.party.toLowerCase() == party ? true : false;});
-		 	this.nodes.map(node => {
-		 		node.active = node.party.toLowerCase() == party ? true : false;
-		 	});
 
-	  		this.nodes = this.nodes.slice(); //updates the graph. sends update to ngOnChanges
-
-	  		// this.linkScramble();
-
-    	}
-    	if(filters.money || filters.money == 0){
-    		//always filtering on origReps isn't the right way to do this, but it will let me check if this works
-    		this.reps = this.origReps.filter(rep => rep.total_contributions > filters.money);
-    		this.nodes = this.origNodes.filter(node => node.money > filters.money)
-    		this.linkScramble();
-    	}
-	}
-
-	linkScramble(this){
-		// demo code that scrambles the links every time. used to check if the graph is working.
-  		this.links = [];
-		let dems = this.nodes.filter(n => n.party.toLowerCase() == 'd')
-
-		for (let i=0; i<dems.length-1; i++){
-			let rand = Math.floor(Math.random() * dems.length)
-			this.links.push(new Link(dems[i], dems[rand]));
-			this.links.push(new Link(dems[i], dems[i+1]));
-			// this.links.push(new Link(dems[i], central_node));
-		}
-		let repus = this.nodes.filter(n => n.party.toLowerCase() == 'r')
-		for (let i=0; i<repus.length-1; i++){
-			let rand = Math.floor(Math.random() * repus.length)
-			this.links.push(new Link(repus[i], repus[rand]));
-			this.links.push(new Link(repus[i], repus[i+1]));
-			// this.links.push(new Link(repus[i], central_node));
-		}
 	}
 }

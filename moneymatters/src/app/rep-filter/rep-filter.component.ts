@@ -10,10 +10,12 @@ import { EventEmitter } from '@angular/core';
 })
 export class RepFilterComponent implements OnInit {
   // @Input('filterPromise') filterPromise;
+  selected = "Corey Jones Act";
   @Input('bills_list') bills_list;
   @Input('money_max') money_max;
-  @Output()
-      filterChanged:EventEmitter<string> = new EventEmitter();
+  @Output() filterChanged:EventEmitter<string> = new EventEmitter();
+  @Output() activeBill: EventEmitter<any> = new EventEmitter<any>();
+
 
   constructor() {
 

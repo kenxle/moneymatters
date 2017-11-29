@@ -1,9 +1,13 @@
-import { Component, Input,
-  ChangeDetectorRef, HostListener,
-  ChangeDetectionStrategy, OnInit,
-  AfterViewInit, OnChanges,
-  SimpleChange,
-        SimpleChanges  } from '@angular/core';
+import { Component,
+         Input,
+         ChangeDetectorRef,
+         HostListener,
+         ChangeDetectionStrategy,
+         OnInit,
+         AfterViewInit,
+         OnChanges,
+         SimpleChange,
+         SimpleChanges  } from '@angular/core';
 import { D3Service, ForceDirectedGraph, Node } from '../../d3';
 
 @Component({

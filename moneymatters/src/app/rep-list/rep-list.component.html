@@ -1,4 +1,4 @@
 <article class="rep-list">
   <app-rep-card *ngFor="let rep of reps | paginate: { itemsPerPage: 9, currentPage: p }" [rep]="rep"></app-rep-card>
-  <pagination-controls *ngIf="reps" (pageChange)="p = $event"></pagination-controls>
 </article>
+<pagination-controls *ngIf="reps" (pageChange)="p = $event"></pagination-controls>
