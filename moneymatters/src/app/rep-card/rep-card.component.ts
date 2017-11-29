@@ -7,12 +7,18 @@ import { RepService } from '../rep/rep.service';
   templateUrl: './rep-card.component.html',
   styleUrls: ['./rep-card.component.scss'],
   encapsulation: ViewEncapsulation.None
-}) 
+})
 
 export class RepCardComponent implements OnInit {
   @Input() rep;
+  expanded = false;
   constructor() {
    }
+
+  toggleExpanded() {
+    console.log(this.expanded);
+    this.expanded = !this.expanded;
+  }
 
   ngOnInit() {
   }

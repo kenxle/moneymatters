@@ -47,18 +47,18 @@ header[role="banner"] h3 {
     font-size: 1.6rem;
     line-height: 1.1;
   }
-  .mm-left {
-    width: 100%;
-  }
-  .mm-right {
-    width: 100%;
-  }
 }
 
 @media screen and (max-width: 600px) {
   header[role="banner"] {
     position: relative;
     padding: 0.5rem;
+    width: 100%;
+  }
+  .mm-left {
+    width: 100%;
+  }
+  .mm-right {
     width: 100%;
   }
 }
