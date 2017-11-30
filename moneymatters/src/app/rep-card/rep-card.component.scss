@@ -5,21 +5,6 @@
   width: 160px;
   height: 150px;
   position: relative;
-  .mat-card-content {
-    margin-bottom: 5px;
-  }
-  .mat-card-actions {
-    position: absolute;
-    bottom: 1rem;
-    right: 16px;
-  }
-}
-
-
-.mat-card-subtitle {
-  color: #424242;
-}
-.rep-card {
   margin: 0.5rem;
   position: relative;
   padding: 0.5rem;
@@ -38,11 +23,32 @@
       color: #007EFF;
     }
   }
+  .mat-card-content {
+    margin-bottom: 5px;
+  }
+  .mat-card-actions {
+    position: absolute;
+    bottom: 1rem;
+    right: 16px;
+  }
+  &.expanded {
+    width: 340px;
+    height: auto;
+  }
 }
+
+
+.mat-card-subtitle {
+  color: #424242;
+}
+
 
 
 @media screen and (max-width: 800px) {
   .mat-card {
     width: 150px;
+    &.expanded {
+      width: 300px;
+    }
   }
 }
