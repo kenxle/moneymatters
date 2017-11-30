@@ -12,6 +12,7 @@ import { SHARED_VISUALS } from './visuals/shared';
 import {NodeVisualComponent} from './visuals/shared/node-visual/node-visual.component'
 import {LinkVisualComponent} from './visuals/shared/link-visual/link-visual.component'
 
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { Ng2DropdownModule } from 'ng2-material-dropdown';
 import {MatButtonModule,
@@ -61,6 +62,7 @@ import { BillComponent } from './bill/bill.component';
     HttpClientModule,
     NgxPaginationModule,
     Ng2DropdownModule,
+    Ng2SearchPipeModule,
     MatButtonModule,
     MatCardModule,
     MatExpansionModule,
