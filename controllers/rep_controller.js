@@ -59,7 +59,11 @@ exports.update = (req, res, next) => {
     	next(e)
     });
 }
+exports.test = (req, res, next) => {
 
+
+  res.status(200).json("{you: 'made', it: 'here'}")
+}
 /**
  * Get user list.
  * @property {number} req.query.skip - Number of users to be skipped.

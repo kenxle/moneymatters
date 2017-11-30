@@ -3,9 +3,10 @@ const router = express.Router();
 
 var rep_controller = require('../controllers/rep_controller.js');
 var api_controller = require('../controllers/api_controller.js');
+var bill_contribution_controller = require('../controllers/bill_contribution_controller.js');
 
 
-/* GET api listing. */
+/* GET api listing. */ 
 router.get('/', (req, res) => {
   res.send('Hey, beautiful.');
 });
@@ -15,16 +16,21 @@ router.get('/members/:chamber', rep_controller.list);
 
 router.get('/update/database', api_controller.updateDatabase);
 router.get('/update/database/members', api_controller.updateDatabaseMembers);
+router.get('/update/clean/contributions',  bill_contribution_controller.cleanData);
 
 router.get('/member/:crpid/interestcontributions', api_controller.getInterestContributions);
 
 router.get('/members/:chamber/:session', api_controller.listChamberSession);
+
+router.get('/bill/:billId/contributions', bill_contribution_controller.list);
+// router.get('/bill/:billId/contributions', rep_controller.test);
 
 router.get('/bill/:billId/position', api_controller.getBillPositions);
 router.get('/bills/:billId/position', api_controller.getBillPositions);
 router.get('/bills/:billId/positions', api_controller.getBillPositions);
 router.get('/bill/:billId/positions', api_controller.getBillPositions);
 router.get('/bills', api_controller.getBillList); 
+
 
 //////////////////////////////////////
 //////////////////////////////////////

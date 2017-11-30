@@ -45,7 +45,10 @@ app.use(express.static(path.join(__dirname, 'moneymatters/dist')));
 app.use('/api', api);
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
+  // res.sendFile(path.join(__dirname, '/moneymatters/dist/index.html'));
+  console.log("unmatched path");;
+  // console.log(res);
+  res.send();
 });
 
 // catch 404 and forward to error handler

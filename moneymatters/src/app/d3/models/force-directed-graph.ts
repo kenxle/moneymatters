@@ -22,7 +22,6 @@ export class ForceDirectedGraph {
   constructor(nodes, links, options: { width, height }) {
     this.nodes = nodes;
     this.links = links;
-
     this.initSimulation(options);
   }
 

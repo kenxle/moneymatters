@@ -1,43 +1,13 @@
 <ul class="rep-filters">
   <li>
-    <button id="buttonFilter buttonFilterNGButton" class="rep-button"
-            (onShow)="filterOpened($event)"
-            (onHide)="filterClosed($event)"
-            (onItemClicked)="applyPartyFilter($event)"
-            (click)="setActive($event)"
-            [matMenuTriggerFor]="billMenu">
-            Bill
-    </button>
-    <mat-menu #billMenu="matMenu" yPosition="below" [overlapTrigger]="false">
-      <button mat-menu-item *ngFor="let bill of bills_list" [value]="bill.topic">
-        {{bill.topic}}
-      </button>
-    </mat-menu>
-  </li>
-  <li>
-    <button id="moneyFilter" id="moneyFilterNGButton" class="rep-button"
-            (onShow)="filterOpened($event)"
-            (onHide)="filterClosed($event)"
-            (onItemClicked)="applyMoneyFilter($event)"
-            (click)="setActive($event)"
-            [matMenuTriggerFor]="moneyMenu">
-            Money
-    </button>
-    <mat-menu #moneyMenu="matMenu" yPosition="below" [overlapTrigger]="false">
-      <h3>Money</h3>
-      <p style="text-align: center; font-family: 'Helvetica', sans-serif;"><small>{{slider.value | currency}} - {{money_max | currency }}</small></p>
-      <mat-slider #slider min="1" max="{{money_max}}" step="0.5" value="100"
-      (change)="applyMoneyFilter($event)"></mat-slider>
-    </mat-menu>
-  </li>
-  <li>
-    <button id="partyButton"
-            class="rep-button"
-            (onShow)="filterOpened($event)"
-            (onHide)="filterClosed($event)"
-            (onItemClicked)="applyPartyFilter($event)"
-            (click)="setActive($event)">
-            Party
-    </button>
+    <p>Bill:
+      <mat-form-field>
+        <mat-select [(value)]="selected">
+          <mat-option *ngFor="let bill of bills_list" value="{{bill.topic}}">
+            {{bill.topic}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
   </li>
 </ul>
