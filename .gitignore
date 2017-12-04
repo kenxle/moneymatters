@@ -5,4 +5,5 @@ log
 /moneymatters/node_modules
 .DS_Store
 */.sass-cache
+/trash
 
