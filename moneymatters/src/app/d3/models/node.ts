@@ -31,15 +31,15 @@ export class Node implements d3.SimulationNodeDatum {
 
   get r() {
     if(this.id == "center"){
-      return 100;
+      return 2;
     }
-    return Math.max(this.normal() *10, 2)
+    return Math.max(this.normal() *13, 2)
     // return 50 * this.normal() + 10;
     // return 7;
   }
 
   get fontSize() {
-    return Math.max(this.normal() *4, 1)+"px";
+    return Math.max(this.normal() *5, 0.5)+"px";
     // return (30 * this.normal() + 10) + 'px';
   }
 
