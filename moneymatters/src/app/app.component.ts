@@ -8,7 +8,7 @@ import APP_CONFIG from './app.config';
   selector: 'app-root',
   templateUrl: './app.component.html',
   providers: [DataService],
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
 	title = 'app';

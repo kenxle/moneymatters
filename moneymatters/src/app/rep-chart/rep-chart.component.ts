@@ -103,9 +103,10 @@ export class RepChartComponent implements OnInit, OnChanges {
     }
 
   createSvg(this, radius, callback) {
+    let svgWidth = $(".mm-right").width();
     d3.selectAll('svg').remove();
     this.svg = d3.select('#canvas').append('svg:svg')
-      .attr('width', 650)
+      .attr('width', svgWidth)
       .attr('height', 500);
     callback(this.svg);
   }
