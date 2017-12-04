@@ -1,15 +1,22 @@
 pagination-controls {
+   bottom: 0;
+   background-color: #fff;
+}
+.ngx-pagination {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-bottom: 0;
+  font-family: 'Helvtica', sans-serif;
+  padding: 1rem;
   width: 100%;
-  margin-top: 3rem;
-  margin-left: auto;
-  margin-right: auto;
-  pagination-content {
+  .pagination-content {
     display: flex;
     justify-content: center;
   }
 }
 .rep-list {
-  max-width: 600px;
+  margin-top: 2rem;
   display: flex;
   flex-flow: row wrap;
+  position: relative;
 }
