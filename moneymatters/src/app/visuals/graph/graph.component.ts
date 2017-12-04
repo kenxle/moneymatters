@@ -119,8 +119,13 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   get options() {
+    let width = window.innerWidth;
+    let graph_width = width;
+    if (width <= 600) graph_width = width;
+    else if (width <= 800) graph_width = width * 0.45;
+    else graph_width = width * 0.6;
     return {
-      width: window.innerWidth * 0.60,
+      width: graph_width,
       height: window.innerHeight
     }; //this._options = 
   }
