@@ -11,8 +11,9 @@
     <div class="rep-filter">
       <app-rep-filter (filterChanged)="applyFilters($event)"
           [bills_list]="bills"
-          [money_max]="max_money_filter"
-          (searchRep)="searchRep($event)"></app-rep-filter>
+          [money_max]="max_money_filter">
+            
+          </app-rep-filter>
     </div>
     <app-rep-list [reps]="reps"></app-rep-list>
   </section>
