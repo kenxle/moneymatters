@@ -156,5 +156,14 @@ export class AppComponent {
 			this.links.push(new Link(repus[i], repus[i+1]));
 			// this.links.push(new Link(repus[i], central_node));
 		}
+
+		let n = new Node('center');
+		n.x = 0;
+		n.y = 0;
+		this.nodes.push(n);
+
+		this.links.push(new Link(repus[0], n));
+		this.links.push(new Link(dems[0], n));
+		
 	}
 }
