@@ -45,7 +45,7 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    this.graph.initSimulation(this.options);
+    // this.graph.initSimulation(this.options);
   }
 
 
@@ -119,9 +119,9 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   get options() {
-    return this._options /*= {
-      width: window.innerWidth,
+    return {
+      width: window.innerWidth * 0.60,
       height: window.innerHeight
-    };*/
+    }; //this._options = 
   }
 }
