@@ -1,6 +1,5 @@
 
 <mat-card *ngIf="rep.show" class="rep-card">
-
   <div class="rep-watermark {{rep.party | lowercase }}">{{ rep.party | firstLetter }}</div>
   <mat-card-title>
     <h2>{{rep.first_name}} {{rep.last_name}}</h2>
@@ -11,7 +10,4 @@
   <mat-card-content>
     <p>{{rep.total_contributions | currency }}</p>
   </mat-card-content>
-  <mat-card-actions>
-  <button mat-button>EXPAND</button>
-</mat-card-actions>
 </mat-card>
