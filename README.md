@@ -1,6 +1,6 @@
 # Moneymatters
 
-Live at [moneymatters.graphics](https://moneymatters.graphics)
+Live at [moneymatters.graphics](http://moneymatters.graphics)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
 
